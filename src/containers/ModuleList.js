@@ -1,6 +1,9 @@
 import React from 'react';
 import ModuleListItem from '../components/ModuleListItem';
 import ModuleService from '../services/ModuleService';
+import ModuleEditor from '../containers/ModuleEditor';
+import {BrowserRouter as Router,Route} from 'react-router-dom';
+
 export default class ModuleList extends React.Component{
 
     constructor(props) {
@@ -65,24 +68,40 @@ export default class ModuleList extends React.Component{
     renderListOfModules() {
         let modules = this.state.modules
             .map((module) =>
-                   <ModuleListItem module={module} title={module.title} key={module.id} delete={this.deleteModule}/>
+                   <ModuleListItem module={module} title={module.title} courseId={this.state.courseId} key={module.id} delete={this.deleteModule}/>
             );
         return modules;
     }
 
     render(){
         return(
-        <div className="container-fluid">
-            <input className="form-control"
-                   onChange={this.titleChanged}
-                   placeholder="title"/>
-            <button onClick={this.createModule} className="btn btn-primary btn-block">
-                <i className="fa fa-plus"></i>
-            </button>
-            <ul className="list-group">
-            {this.renderListOfModules()}
-            </ul>
-        </div>
-        );
+            <Router>
+                <div className='row'>
+                    <div className="col-4">
+                        <table className='table'>
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <input className="form-control"
+                                               onChange={this.titleChanged}
+                                               placeholder="title"/>
+                                    </td>
+                                    <td>
+                                        <button onClick={this.createModule} className="btn btn-primary btn-block">
+                                            <i className="fa fa-plus"></i>
+                                        </button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <ul className="list-group">
+                            {this.renderListOfModules()}
+                        </ul>
+                    </div>
+                    <div className='col-8'>
+                        <Route path='/course/:courseId/module/:moduleId' component={ModuleEditor}/>
+                    </div>
+                </div>
+            </Router>);
     }
 }

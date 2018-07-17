@@ -9,7 +9,7 @@ export default class CourseList extends React.Component{
         this.titleChanged = this.titleChanged.bind(this);
         this.createCourse = this.createCourse.bind(this);
         this.deleteCourse = this.deleteCourse.bind(this);
-        this.state = {courses: []};
+        this.state = {course:{},courses: []};
     }
 
     componentDidMount(){
