@@ -73,7 +73,6 @@ export default class ModuleList extends React.Component{
     render(){
         return(
         <div className="container-fluid">
-            <h3>Module list for course: {this.state.courseId}</h3>
             <input className="form-control"
                    onChange={this.titleChanged}
                    placeholder="title"/>

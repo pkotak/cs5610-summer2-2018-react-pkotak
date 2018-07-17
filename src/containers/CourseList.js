@@ -58,18 +58,18 @@ export default class CourseList extends React.Component{
 
     render(){
         return (
-            <div>
-                <h2>CourseList</h2>
-                <table className='table'>
-                    <thead>
+            <div className='container-fluid'>
+                <table className='table table-striped'>
+                    <thead className='thead-light'>
                         <tr>
                             <th>Title</th>
                             <th>Last Modified</th>
+                            <th>&nbsp;</th>
                         </tr>
                         <tr>
                             <th><input onChange={this.titleChanged} className="form-control" id="titleFld" placeholder="cs101"/></th>
                             <th>&nbsp;</th>
-                            <th><button onClick={this.createCourse} className="btn btn-primary" id="addBtn">Add</button></th>
+                            <th><button onClick={this.createCourse} className="btn btn-primary" id="addBtn"> <i className="fa fa-plus"></i></button></th>
                         </tr>
                     </thead>
                     <tbody>

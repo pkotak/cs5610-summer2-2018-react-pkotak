@@ -9,7 +9,7 @@ export default class ModuleListItem
         return(
             <li className="list-group-item">
                 {this.props.title}
-                <span className="float-lg-right">
+                <span className="pull-right">
                     <button className='btn bg-transparent' onClick={() => {
                         this.props.delete(this.props.module.id);
                     }}>
