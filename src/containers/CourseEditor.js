@@ -1,5 +1,4 @@
 import React from 'react';
-import LessonsTab from "./LessonsTab";
 import ModuleList from "./ModuleList";
 
 export default class CourseEditor
@@ -26,15 +25,9 @@ export default class CourseEditor
     render(){
         return(
             <div>
-                <h3>Course : {this.state.courseId}</h3>
-                <div className='row'>
-                    <div className='col-4'>
-                        <ModuleList courseId={this.state.courseId}/>
-                    </div>
-                    <div className='col-8'>
-                        <LessonsTab/>
-                    </div>
-                </div>
+                <nav className="navbar navbar-expand-lg navbar-light bg-light"><h3>Course ID: {this.state.courseId}</h3>
+                </nav>
+                <ModuleList courseId={this.state.courseId}/>
             </div>
         );
     }
