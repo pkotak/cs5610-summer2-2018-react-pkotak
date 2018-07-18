@@ -37,4 +37,12 @@ export default class CourseService{
             return response;
         })
     }
+
+    editCourse(course){
+        return fetch(COURSE_API_URL + '/' + course.id), {
+            method: 'put',
+            body: JSON.stringify(course),
+            headers: {'Content-Type': 'application/json'}
+        }
+    }
 }

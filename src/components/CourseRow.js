@@ -9,13 +9,16 @@ export default class CourseRow extends React.Component{
     deleteCourse(courseId){
         this.props.delete(courseId);
     }
+
     render(){
         return(
             <tr>
                 <td>
+                    <i className='fa fa-file-text'/>
                     <Link to={`/course/${this.props.course.id}/edit`}>
                         {this.props.course.title}</Link>
                 </td>
+                <td>me</td>
                 <td>{this.props.course.modified}</td>
                 <td><button className="btn btn-danger" onClick={() => {this.deleteCourse(this.props.course.id)}}>
                     <i className="fa fa-trash"></i>
