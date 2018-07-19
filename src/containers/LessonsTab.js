@@ -9,10 +9,12 @@ export default class LessonsTab
     constructor(props){
         super(props);
         this.state={
+            selectedLesson: 0,
             moduleId: '', courseId: '',
             lesson: {title: ''}, lessons:[]
         }
 
+        this.selectLesson = this.selectLesson.bind(this);
         this.setModuleId = this.setModuleId.bind(this);
         this.setCourseId = this.setCourseId.bind(this);
         this.setLessonTitle = this.setLessonTitle.bind(this);
@@ -41,15 +43,21 @@ export default class LessonsTab
         this.setState({lessons : lessons})
     }
 
+    selectLesson(lessonIndex){
+        this.setState({selectedLesson: lessonIndex});
+    }
+
     componentDidMount() {
         this.setModuleId(this.props.moduleId);
         this.setCourseId(this.props.courseId);
+        this.findAllLessonsForModule(this.props.moduleId, this.props.courseId);
     }
 
     componentWillReceiveProps(newProps) {
+        this.setState({selectedLesson: 0});
         this.setModuleId(newProps.moduleId);
         this.setCourseId(newProps.courseId);
-        this.findAllLessonsForModule(newProps.moduleId, newProps.courseId)
+        this.findAllLessonsForModule(newProps.moduleId, newProps.courseId);
 
     }
 
@@ -75,12 +83,16 @@ export default class LessonsTab
     }
 
     renderLessons(){
-       let lessons = this.state.lessons.map((lesson) => {
+       let lessons = this.state.lessons.map((lesson, index) => {
+           let active = this.state.selectedLesson === index ? 'active' : '';
            return (
-               <LessonTabItem key={lesson.id}
+               <LessonTabItem key={index}
+                              position={index}
                               moduleId={this.props.moduleId}
                               courseId={this.props.courseId}
+                              active={active}
                               lesson={lesson}
+                              select={this.selectLesson}
                               delete={this.deleteLesson}/>
            )
        });
@@ -101,8 +113,10 @@ export default class LessonsTab
                   <input className='form-control'
                          onChange={this.setLessonTitle}
                          placeholder='Lesson Name'/>
-                  <button onClick={this.createLesson} className="btn btn-primary btn-block">Create</button>
-                  {this.renderLessons()}
+                  <button onClick={this.createLesson} className="btn btn-success btn-block">Create</button>
+                  <ul className="nav nav-tabs">
+                      {this.renderLessons()}
+                  </ul>
                   <div className='tab-content'>
                     <Route path='/course/:courseId/module/:moduleId/lesson/:lessonId' component={LessonEditor}/>
                   </div>

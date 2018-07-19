@@ -2,7 +2,6 @@ import React from 'react';
 import {Route} from 'react-router-dom';
 import LessonEditor from './LessonEditor';
 import LessonsTab from "./LessonsTab";
-import CourseEditor from "./CourseEditor";
 
 export default class ModuleEditor extends React.Component {
     constructor(props){
@@ -50,7 +49,7 @@ export default class ModuleEditor extends React.Component {
             <div className="container-fluid">
                 <LessonsTab moduleId={this.state.moduleId} courseId={this.state.courseId}/>
                 <div className="tab-content">
-                    <Route path="/course/:courseId/module/:moduleId/lesson/:lessonId" component={CourseEditor}/>
+                    <Route path="/course/:courseId/module/:moduleId/lesson/:lessonId" component={LessonEditor}/>
                 </div>
             </div>
     );

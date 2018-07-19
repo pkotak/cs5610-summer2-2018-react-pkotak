@@ -59,7 +59,7 @@ export default class CourseList extends React.Component{
 
     renderCourseRow(){
         var courses = this.state.courses.map(
-            (course) => {
+            (course, index) => {
                 var updatedCourse = {
                     id: course.id,
                     title: course.title,
@@ -69,9 +69,9 @@ export default class CourseList extends React.Component{
                 }
                 // course.modified = this.renderDate(course.modified);
                 if(this.state.view === 'list')
-                    return <CourseRow key={course.id} course={updatedCourse} delete={this.deleteCourse}/>
+                    return <CourseRow key={index} course={updatedCourse} delete={this.deleteCourse}/>
                 else
-                    return <CourseCard key={course.id} course={updatedCourse} delete={this.deleteCourse}/>
+                    return <CourseCard key={index} course={updatedCourse} delete={this.deleteCourse}/>
             }
         )
 
