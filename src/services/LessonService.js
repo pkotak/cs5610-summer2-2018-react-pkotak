@@ -2,7 +2,7 @@ let _singleton = Symbol();
 const LESSON_API_URL = 'http://localhost:8080';
 export default class LessonService {
     constructor(singletonToken) {
-        if (_singleton != singletonToken)
+        if (_singleton !== singletonToken)
             throw new Error('Cannot instantiate');
     }
     static get instance(){

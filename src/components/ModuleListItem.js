@@ -6,10 +6,6 @@ export default class ModuleListItem
         super(props);
     }
 
-    // selectElement = () => {
-    //     this.setState({bgColour: 'blue'});
-    // }
-
     render(){
         return(
             <li className="list-group-item">

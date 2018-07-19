@@ -88,8 +88,8 @@ export default class LessonsTab
            return (
                <LessonTabItem key={index}
                               position={index}
-                              moduleId={this.props.moduleId}
-                              courseId={this.props.courseId}
+                              moduleId={this.state.moduleId}
+                              courseId={this.state.courseId}
                               active={active}
                               lesson={lesson}
                               select={this.selectLesson}
