@@ -9,11 +9,13 @@ export default class ModuleList extends React.Component{
     constructor(props) {
         super(props);
         this.state = {
+            selectedModule: 0,
             courseId: '',
             module:{ title : ''},
             modules: []
         };
 
+        this.selectModule = this.selectModule.bind(this);
         this.titleChanged = this.titleChanged.bind(this);
         this.createModule = this.createModule.bind(this);
         this.deleteModule = this.deleteModule.bind(this);
@@ -29,6 +31,7 @@ export default class ModuleList extends React.Component{
 
     componentWillReceiveProps(newProps){
         this.setCourseId(newProps.courseId);
+        this.setState({selectedModule: 0});
         this.findAllModulesForCourse(newProps.courseId)
     }
 
@@ -38,6 +41,10 @@ export default class ModuleList extends React.Component{
 
     setCourseId(courseId){
         this.setState({courseId: courseId});
+    }
+
+    selectModule(moduleIndex){
+        this.setState({selectedModule: moduleIndex});
     }
 
     findAllModulesForCourse(courseId) {
@@ -66,9 +73,17 @@ export default class ModuleList extends React.Component{
 
     renderListOfModules() {
         let modules = this.state.modules
-            .map((module) =>
-                   <ModuleListItem module={module} title={module.title} courseId={this.state.courseId} key={module.id} delete={this.deleteModule}/>
-            );
+            .map((module, index) => {
+                let active = this.state.selectedModule === index ? 'active' : '';
+                return(<ModuleListItem module={module}
+                                title={module.title}
+                                courseId={this.state.courseId}
+                                active={active}
+                                key={index}
+                                delete={this.deleteModule}
+                                select={this.selectModule}
+                                position={index}/>);
+            });
         return modules;
     }
 

@@ -10,6 +10,7 @@ export default class LessonsTab
         super(props);
         this.state={
             selectedLesson: 0,
+            showView: false,
             moduleId: '', courseId: '',
             lesson: {title: ''}, lessons:[]
         }
@@ -20,6 +21,7 @@ export default class LessonsTab
         this.setLessonTitle = this.setLessonTitle.bind(this);
         this.createLesson = this.createLesson.bind(this);
         this.deleteLesson = this.deleteLesson.bind(this);
+        this.toggleAddLessonView = this.toggleAddLessonView.bind(this);
         this.lessonService = LessonService.instance;
     }
 
@@ -82,6 +84,10 @@ export default class LessonsTab
             })
     }
 
+    toggleAddLessonView(){
+        this.setState({showView: !(this.state.showView)});
+    }
+
     renderLessons(){
        let lessons = this.state.lessons.map((lesson, index) => {
            let active = this.state.selectedLesson === index ? 'active' : '';
@@ -97,23 +103,51 @@ export default class LessonsTab
            )
        });
 
-        return (
-            <nav>
-                <div className="nav nav-tabs" id='nav-tab' role='tablist'>
-                    {lessons}
-                </div>
-            </nav>);
+        if(this.state.showView){
+            return (
+                <div className='row'>
+                        <div className="nav nav-tabs" id='nav-tab' role='tablist'>
+                            {lessons}
+                            <li className='nav-item'>
+                                <button className="btn btn-outline-info" onClick={() => {this.toggleAddLessonView()}}>
+                                    <i className="fa fa-times"></i>
+                                </button>
+                            </li>
+                        </div>
+                        <table className='table table-borderless'>
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <input className='form-control'
+                                               onChange={this.setLessonTitle}
+                                               placeholder='Lesson Name'/>
+                                    </td>
+                                    <td>
+                                        <button onClick={this.createLesson} className="btn btn-primary btn-block">Create</button>
+                                    </td>
+
+                                </tr>
+                            </tbody>
+                        </table>
+                </div>);
+        }else {
+            return (
+                    <div className="nav nav-tabs" id='nav-tab' role='tablist'>
+                        {lessons}
+                        <li className='nav-item'>
+                            <button className="btn btn-outline-info" onClick={() => {this.toggleAddLessonView()}}>
+                                <i className="fa fa-plus"></i>
+                            </button>
+                        </li>
+                    </div>);
+        }
+
     }
 
     render() {
         return (
             <Router>
               <div className='container-fluid'>
-                  <h4>Lesson Tabs for Course: {this.state.courseId} Module: {this.state.moduleId}</h4>
-                  <input className='form-control'
-                         onChange={this.setLessonTitle}
-                         placeholder='Lesson Name'/>
-                  <button onClick={this.createLesson} className="btn btn-success btn-block">Create</button>
                   <ul className="nav nav-tabs">
                       {this.renderLessons()}
                   </ul>

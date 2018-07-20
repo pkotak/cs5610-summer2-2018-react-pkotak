@@ -68,13 +68,33 @@ export default class TopicPills extends React.Component{
             )
         });
 
-        return (topics);
+        return (
+            <div>
+            <table className='table'>
+                <tbody>
+                <tr>
+                    <td width="80%">
+                        <input className='form-control'
+                               placeholder='Topic'/>
+                    </td>
+                    <td width="20%">
+                        <button className='btn btn-outline-info'>
+                            <i className="fa fa-plus"></i>
+                        </button>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+            <div className='row'>
+                {topics}
+            </div>
+            </div>
+            );
     }
 
     render() {
         return(
             <div>
-                <h2>Topics</h2>
                 <ul className="nav nav-pills">
                     {this.renderTopics()}
                 </ul>
