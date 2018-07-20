@@ -2,6 +2,7 @@ import React from'react';
 import CourseRow from "../components/CourseRow";
 import CourseService from "../services/CourseService";
 import '../styles/styles.css';
+import CourseCard from "../components/CourseCard";
 
 export default class CourseList extends React.Component{
     constructor(){
@@ -11,7 +12,9 @@ export default class CourseList extends React.Component{
         this.createCourse = this.createCourse.bind(this);
         this.deleteCourse = this.deleteCourse.bind(this);
         this.renderDate = this.renderDate.bind(this);
-        this.state = {course:{},courses: []};
+        this.toggleView = this.toggleView.bind(this);
+        this.renderView = this.renderView.bind(this);
+        this.state = {view: 'list', course:{},courses: []};
     }
 
     componentDidMount(){
@@ -26,24 +29,62 @@ export default class CourseList extends React.Component{
             return null;
     }
 
+    renderView(){
+        if(this.state.view === 'list'){
+            return (
+                <table className='table table-striped'>
+                    <thead className='thead-light'>
+                    <tr>
+                        <th>Title</th>
+                        <th>Owner</th>
+                        <th>Last Modified</th>
+                        <th>Created</th>
+                        <th>&nbsp;</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {this.renderCourseRow()}
+                    </tbody>
+                </table>
+            );
+        }
+        else {
+            return (
+                <div className='card-deck'>
+                    {this.renderCourseRow()}
+                </div>
+            )
+        }
+    }
+
     renderCourseRow(){
         var courses = this.state.courses.map(
-            (course) => {
+            (course, index) => {
                 var updatedCourse = {
                     id: course.id,
                     title: course.title,
                     modified: this.renderDate(course.modified),
-                    created: course.created,
+                    created: this.renderDate(course.created),
                     modules: course.modules
                 }
                 // course.modified = this.renderDate(course.modified);
-                return <CourseRow key={course.id} course={updatedCourse} delete={this.deleteCourse}/>
+                if(this.state.view === 'list')
+                    return <CourseRow key={index} course={updatedCourse} delete={this.deleteCourse}/>
+                else
+                    return <CourseCard key={index} course={updatedCourse} delete={this.deleteCourse}/>
             }
         )
 
         return(
             courses
         )
+    }
+
+    toggleView(){
+        if(this.state.view === 'list')
+            this.setState({view: 'tabs'});
+        else
+            this.setState({view: 'list'});
     }
 
     titleChanged(event){
@@ -88,30 +129,26 @@ export default class CourseList extends React.Component{
                                            className="form-control"
                                            id="titleFld"
                                            placeholder="cs101"/></th>
-                                <th width="40%" className='pull-right'><button onClick={this.createCourse}
+                                <th width="50%" className='pull-right'>
+                                    <button onClick={this.createCourse}
                                             className="btn btn-primary btn-block"
                                             id="addBtn">
-                                    <i className='fa fa-plus'></i>
-                                </button>
+                                            <i className='fa fa-plus'></i>
+                                    </button>
+                                </th>
+                                <th>
+                                    <button onClick={this.toggleView}
+                                            className='btn btn-warning'
+                                            id='toggleBtn'>
+                                        <i className='fa fa-th'></i>
+                                    </button>
                                 </th>
                             </tr>
                         </thead>
                     </table>
                 </div>
                 <div>
-                    <table className='table table-striped'>
-                        <thead className='thead-light'>
-                            <tr>
-                                <th>Title</th>
-                                <th>Owner</th>
-                                <th>Last Modified</th>
-                                <th>&nbsp;</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {this.renderCourseRow()}
-                        </tbody>
-                    </table>
+                    {this.renderView()}
                 </div>
             </div>
         )

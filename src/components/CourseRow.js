@@ -20,6 +20,7 @@ export default class CourseRow extends React.Component{
                 </td>
                 <td>me</td>
                 <td>{this.props.course.modified}</td>
+                <td>{this.props.course.created}</td>
                 <td><button className="btn btn-danger" onClick={() => {this.deleteCourse(this.props.course.id)}}>
                     <i className="fa fa-trash"></i>
                     </button>

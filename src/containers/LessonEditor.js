@@ -1,4 +1,5 @@
 import React from 'react';
+import TopicPills from "./TopicPills";
 
 export default class LessonEditor extends React.Component{
     constructor(props){
@@ -37,10 +38,9 @@ export default class LessonEditor extends React.Component{
     render(){
         return(
             <div>
-                <h1>Lesson Editor</h1>
-                <h6>Course: {this.state.courseId}</h6>
-                <h6>Module: {this.state.moduleId}</h6>
-                <h6>Lesson: {this.state.lessonId}</h6>
+                <TopicPills courseId={this.state.courseId}
+                            moduleId={this.state.moduleId}
+                            lessonId={this.state.lessonId}/>
             </div>
         );
 
