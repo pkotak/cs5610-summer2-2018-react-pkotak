@@ -67,7 +67,7 @@ export default class CourseList extends React.Component{
                     created: this.renderDate(course.created),
                     modules: course.modules
                 }
-                // course.modified = this.renderDate(course.modified);
+
                 if(this.state.view === 'list')
                     return <CourseRow key={index} course={updatedCourse} delete={this.deleteCourse}/>
                 else

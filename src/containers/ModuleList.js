@@ -12,7 +12,8 @@ export default class ModuleList extends React.Component{
             selectedModule: 0,
             courseId: '',
             module:{ title : ''},
-            modules: []
+            modules: [],
+            searchResultsModule: []
         };
 
         this.selectModule = this.selectModule.bind(this);
@@ -22,6 +23,7 @@ export default class ModuleList extends React.Component{
         this.setCourseId = this.setCourseId.bind(this);
         this.setModules = this.setModules.bind(this);
         this.findAllModulesForCourse = this.findAllModulesForCourse.bind(this);
+        this.searchBarChanged = this.searchBarChanged.bind(this);
         this.moduleService = ModuleService.instance;
     }
 
@@ -36,7 +38,7 @@ export default class ModuleList extends React.Component{
     }
 
     setModules(modules) {
-        this.setState({modules: modules})
+        this.setState({modules: modules, searchResultsModule: modules});
     }
 
     setCourseId(courseId){
@@ -71,8 +73,20 @@ export default class ModuleList extends React.Component{
         this.setState({module: {title : event.target.value}});
     }
 
+    searchBarChanged(event){
+        var searchText = event.target.value;
+        var searchedModules = [];
+        this.state.modules
+            .map(module => {
+                if(module.title.includes(searchText)){
+                    searchedModules.push(module);
+                }
+            });
+        this.setState({searchResultsModule: searchedModules})
+    }
+
     renderListOfModules() {
-        let modules = this.state.modules
+        let modules = this.state.searchResultsModule
             .map((module, index) => {
                 let active = this.state.selectedModule === index ? 'active' : '';
                 return(<ModuleListItem module={module}
@@ -84,7 +98,23 @@ export default class ModuleList extends React.Component{
                                 select={this.selectModule}
                                 position={index}/>);
             });
-        return modules;
+        return (
+            <div>
+                {modules}
+                <div className="input-group mb-3">
+                    <input className="form-control"
+                           onChange={this.titleChanged}
+                           placeholder="Module 1.1"/>
+                    <div>
+                        <button onClick={this.createModule}
+                                className="btn btn-primary btn-block">
+                            <i className="fa fa-plus"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+        );
     }
 
     render(){
@@ -92,22 +122,18 @@ export default class ModuleList extends React.Component{
             <Router>
                 <div className='row'>
                     <div className="col-4">
-                        <table className='table'>
-                            <tbody>
-                                <tr>
-                                    <td>
-                                        <input className="form-control"
-                                               onChange={this.titleChanged}
-                                               placeholder="title"/>
-                                    </td>
-                                    <td>
-                                        <button onClick={this.createModule} className="btn btn-primary btn-block">
-                                            <i className="fa fa-plus"></i>
-                                        </button>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
+                        <div className="input-group mb-3">
+                            <div className="input-group-prepend">
+                                <span className="input-group-text"
+                                      id="basic-addon1">
+                                     <i className="fa fa-search"></i>
+                                </span>
+                            </div>
+                            <input type="text"
+                                   className="form-control"
+                                   onChange={this.searchBarChanged}
+                                   placeholder="Search"/>
+                        </div>
                         <ul className="list-group">
                             {this.renderListOfModules()}
                         </ul>
