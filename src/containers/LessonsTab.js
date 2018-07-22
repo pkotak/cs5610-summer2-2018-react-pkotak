@@ -3,6 +3,7 @@ import LessonService from "../services/LessonService";
 import LessonTabItem from "../components/LessonTabItem";
 import LessonEditor from '../containers/LessonEditor';
 import {BrowserRouter as Router,Route} from 'react-router-dom';
+import {confirmAlert} from "react-confirm-alert";
 
 export default class LessonsTab
     extends React.Component{
@@ -22,6 +23,7 @@ export default class LessonsTab
         this.createLesson = this.createLesson.bind(this);
         this.deleteLesson = this.deleteLesson.bind(this);
         this.toggleAddLessonView = this.toggleAddLessonView.bind(this);
+        this.confirmDelete = this.confirmDelete.bind(this);
         this.lessonService = LessonService.instance;
     }
 
@@ -88,6 +90,23 @@ export default class LessonsTab
         this.setState({showView: !(this.state.showView)});
     }
 
+    confirmDelete = (lessonId) => {
+        confirmAlert({
+            title: 'Confirm to submit',
+            message: 'Are you sure to do this.',
+            buttons: [
+                {
+                    label: 'Yes',
+                    onClick: () => {this.deleteLesson(lessonId)}
+                },
+                {
+                    label: 'No',
+                    onClick: () => {console.log('cancel')}
+                }
+            ]
+        })
+    }
+
     renderLessons(){
        let lessons = this.state.lessons.map((lesson, index) => {
            let active = this.state.selectedLesson === index ? 'active' : '';
@@ -99,7 +118,7 @@ export default class LessonsTab
                               active={active}
                               lesson={lesson}
                               select={this.selectLesson}
-                              delete={this.deleteLesson}/>
+                              delete={this.confirmDelete}/>
            )
        });
 
