@@ -1,4 +1,5 @@
 const MODULE_API_URL = 'https://cs5610-summer2-2018-paarthk.herokuapp.com/api/course/cId/module';
+const BASE_URL = 'https://cs5610-summer2-2018-paarthk.herokuapp.com';
 let _singleton = Symbol();
 
 export default class ModuleService {
@@ -29,7 +30,7 @@ export default class ModuleService {
     }
 
     deleteModule(moduleId) {
-        return fetch('http://localhost:8080/api/module/mId'.replace('mId', moduleId),
+        return fetch(BASE_URL + '/api/module/mId'.replace('mId', moduleId),
             {
                 method: 'delete',
                 headers: {'Content-Type' : 'application/json'}

@@ -2,6 +2,7 @@ import React from'react';
 import CourseRow from "../components/CourseRow";
 import CourseService from "../services/CourseService";
 import '../styles/styles.css';
+import Sidebar from 'react-sidebar';
 import CourseCard from "../components/CourseCard";
 
 export default class CourseList extends React.Component{
@@ -14,7 +15,12 @@ export default class CourseList extends React.Component{
         this.renderDate = this.renderDate.bind(this);
         this.toggleView = this.toggleView.bind(this);
         this.renderView = this.renderView.bind(this);
-        this.state = {view: 'list', course:{},courses: []};
+        this.onSetSidebarOpen = this.onSetSidebarOpen.bind(this);
+        this.state = {view: 'list', course:{},courses: [], sidebarOpen: true};
+    }
+
+    onSetSidebarOpen = function(open) {
+        this.setState({sidebarOpen: open});
     }
 
     componentDidMount(){
@@ -120,20 +126,39 @@ export default class CourseList extends React.Component{
     render(){
         return (
             <div>
-                <div className='heading-bar'>
-                    <table className='table table-borderless'>
-                        <thead>
+                <Sidebar sidebar={<div className='container side-bar'>
+                    <ul className='list-group'>
+                        <li className='list-inline-item'>
+                            <h4>Option 1</h4>
+                        </li>
+                        <li className='list-inline-item'>
+                            <h4>Option 2</h4>
+                        </li>
+                        <li className='list-inline-item'>
+                            <h4>Option 3</h4>
+                        </li>
+                        <li className='list-inline-item'>
+                            <h4>Option 4</h4>
+                        </li>
+                    </ul>
+                </div>}
+                         open={this.state.sidebarOpen}
+                         onSetOpen={this.onSetSidebarOpen}>
+                    <div className='heading-bar'>
+                        <table className='table table-borderless'>
+                            <thead>
                             <tr>
+                                <th><i className='fa fa-bars' onClick={this.onSetSidebarOpen}></i></th>
                                 <th width="20%"><h4>Course Manager</h4></th>
                                 <th width="60%"><input onChange={this.titleChanged}
-                                           className="form-control"
-                                           id="titleFld"
-                                           placeholder="cs101"/></th>
-                                <th width="50%" className='pull-right'>
+                                                       className="form-control"
+                                                       id="titleFld"
+                                                       placeholder="cs101"/></th>
+                                <th width="70%" className='pull-right'>
                                     <button onClick={this.createCourse}
                                             className="btn btn-primary btn-block"
                                             id="addBtn">
-                                            <i className='fa fa-plus'></i>
+                                        <i className='fa fa-plus'></i>
                                     </button>
                                 </th>
                                 <th>
@@ -144,12 +169,13 @@ export default class CourseList extends React.Component{
                                     </button>
                                 </th>
                             </tr>
-                        </thead>
-                    </table>
-                </div>
-                <div>
-                    {this.renderView()}
-                </div>
+                            </thead>
+                        </table>
+                    </div>
+                    <div>
+                        {this.renderView()}
+                    </div>
+                </Sidebar>
             </div>
         )
     }
