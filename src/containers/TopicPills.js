@@ -6,9 +6,11 @@ export default class TopicPills extends React.Component{
         this.setModuleId = this.setModuleId.bind(this);
         this.setCourseId = this.setCourseId.bind(this);
         this.setLessonId = this.setLessonId.bind(this);
+        this.createTopic = this.createTopic.bind(this);
+        this.titleChanged = this.titleChanged.bind(this);
         this.topicService = TopicService.instance;
         this.state={
-            moduleId: '', courseId: '', lessonId: '', topics: [],
+            moduleId: '', courseId: '', lessonId: '', topic:{title: ''}, topics: [],
             selectedTopic: 0
         }
     }
@@ -56,6 +58,17 @@ export default class TopicPills extends React.Component{
             })
     }
 
+    titleChanged(event) {
+        this.setState({topic: {title : event.target.value}});
+    }
+
+    createTopic(){
+        this.topicService.createTopic(this.state.lessonId, this.state.moduleId, this.state.courseId, this.state.topic)
+            .then(() => {
+                this.findAllTopicsForLesson(this.state.lessonId,this.state.moduleId,this.state.courseId);
+            });
+    }
+
     renderTopics(){
         let topics =  this.state.topics.map((topic, i) => {
             let active = i === this.state.selectedTopic ? 'active' : '';
@@ -75,10 +88,12 @@ export default class TopicPills extends React.Component{
                 <tr>
                     <td width="80%">
                         <input className='form-control'
+                               onChange={this.titleChanged}
                                placeholder='Topic'/>
                     </td>
                     <td width="20%">
-                        <button className='btn btn-outline-info'>
+                        <button className='btn btn-outline-info'
+                                onClick={this.createTopic}>
                             <i className="fa fa-plus"></i>
                         </button>
                     </td>

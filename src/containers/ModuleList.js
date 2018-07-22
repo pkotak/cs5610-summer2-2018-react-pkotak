@@ -2,6 +2,8 @@ import React from 'react';
 import ModuleListItem from '../components/ModuleListItem';
 import ModuleService from '../services/ModuleService';
 import ModuleEditor from '../containers/ModuleEditor';
+import {confirmAlert} from 'react-confirm-alert';
+import 'react-confirm-alert/src/react-confirm-alert.css';
 import {BrowserRouter as Router,Route} from 'react-router-dom';
 
 export default class ModuleList extends React.Component{
@@ -24,6 +26,7 @@ export default class ModuleList extends React.Component{
         this.setModules = this.setModules.bind(this);
         this.findAllModulesForCourse = this.findAllModulesForCourse.bind(this);
         this.searchBarChanged = this.searchBarChanged.bind(this);
+        this.confirmDelete = this.confirmDelete.bind(this);
         this.moduleService = ModuleService.instance;
     }
 
@@ -85,6 +88,23 @@ export default class ModuleList extends React.Component{
         this.setState({searchResultsModule: searchedModules})
     }
 
+    confirmDelete = (moduleId) => {
+        confirmAlert({
+            title: 'Confirm to submit',
+            message: 'Are you sure to do this.',
+            buttons: [
+                {
+                    label: 'Yes',
+                    onClick: () => {this.deleteModule(moduleId)}
+                },
+                {
+                    label: 'No',
+                    onClick: () => {console.log('cancel')}
+                }
+            ]
+        })
+    }
+
     renderListOfModules() {
         let modules = this.state.searchResultsModule
             .map((module, index) => {
@@ -94,7 +114,7 @@ export default class ModuleList extends React.Component{
                                 courseId={this.state.courseId}
                                 active={active}
                                 key={index}
-                                delete={this.deleteModule}
+                                delete={this.confirmDelete}
                                 select={this.selectModule}
                                 position={index}/>);
             });

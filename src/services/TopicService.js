@@ -1,5 +1,5 @@
 let _singleton = Symbol();
-const LESSON_API_URL = 'http://localhost:8080';
+const TOPIC_API_URL = 'https://cs5610-summer2-2018-paarthk.herokuapp.com';
 
 export default class TopicService{
     constructor(singletonToken) {
@@ -14,10 +14,25 @@ export default class TopicService{
     }
 
     findAllTopicsForLesson(lessonId, moduleId, courseId){
-        return fetch(LESSON_API_URL+'/api/course/cId/module/mId/lesson/lId/topic'
+        return fetch(TOPIC_API_URL+'/api/course/cId/module/mId/lesson/lId/topic'
             .replace('cId', courseId)
             .replace('mId', moduleId)
             .replace('lId', lessonId))
+            .then((response) => {
+                return response.json();
+            })
+    }
+
+    createTopic(lessonId, moduleId, courseId, topic){
+        return fetch(TOPIC_API_URL+'/api/course/cId/module/mId/lesson/lId/topic'
+            .replace('cId', courseId)
+            .replace('mId', moduleId)
+            .replace('lId', lessonId),{
+            method: 'post',
+            body: JSON.stringify(topic),
+            headers: {
+                'content-type': 'application/json'
+            }})
             .then((response) => {
                 return response.json();
             })

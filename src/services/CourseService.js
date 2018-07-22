@@ -1,5 +1,5 @@
 let _singleton = Symbol();
-const COURSE_API_URL = 'http://localhost:8080/api/course'
+const COURSE_API_URL = 'https://cs5610-summer2-2018-paarthk.herokuapp.com/api/course';
 export default class CourseService{
     constructor(singletonToken) {
         if (_singleton != singletonToken)
@@ -12,7 +12,7 @@ export default class CourseService{
     }
 
     findAllCourses(){
-        return fetch(COURSE_API_URL)
+        return fetch(COURSE_API_URL + '/api/course')
             .then(function (response) {
                 return response.json();
             });

@@ -1,4 +1,4 @@
-const MODULE_API_URL = 'http://localhost:8080/api/course/cId/module';
+const MODULE_API_URL = 'https://cs5610-summer2-2018-paarthk.herokuapp.com/api/course/cId/module';
 let _singleton = Symbol();
 
 export default class ModuleService {
