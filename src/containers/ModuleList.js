@@ -90,7 +90,7 @@ export default class ModuleList extends React.Component{
 
     confirmDelete = (moduleId) => {
         confirmAlert({
-            title: 'Confirm to submit',
+            title: 'Confirm Delete',
             message: 'Are you sure to do this.',
             buttons: [
                 {

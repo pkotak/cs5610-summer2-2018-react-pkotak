@@ -92,7 +92,7 @@ export default class LessonsTab
 
     confirmDelete = (lessonId) => {
         confirmAlert({
-            title: 'Confirm to submit',
+            title: 'Confirm Delete',
             message: 'Are you sure to do this.',
             buttons: [
                 {

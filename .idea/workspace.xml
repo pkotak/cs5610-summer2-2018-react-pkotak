@@ -3,6 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="cc907221-8990-4501-a01a-07dd43439e07" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/src/containers/LessonsTab.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/containers/LessonsTab.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/containers/ModuleList.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/containers/ModuleList.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -16,11 +17,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="LessonsTab.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="LessonsTab.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/containers/LessonsTab.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="255">
-              <caret line="120" column="56" selection-start-line="120" selection-start-column="56" selection-end-line="120" selection-end-column="56" />
+            <state relative-caret-position="170">
+              <caret line="94" column="34" selection-start-line="94" selection-start-column="28" selection-end-line="94" selection-end-column="34" />
               <folding>
                 <element signature="e#0#26#0" expanded="true" />
               </folding>
@@ -28,11 +29,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ModuleList.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="ModuleList.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/containers/ModuleList.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="293">
-              <caret line="105" column="5" lean-forward="true" selection-start-line="90" selection-start-column="4" selection-end-line="105" selection-end-column="5" />
+            <state relative-caret-position="72">
+              <caret line="92" column="34" selection-start-line="92" selection-start-column="34" selection-end-line="92" selection-end-column="34" />
               <folding>
                 <element signature="e#0#26#0" expanded="true" />
               </folding>
@@ -78,12 +79,12 @@
         <option value="$PROJECT_DIR$/src/components/ModuleListItem.js" />
         <option value="$PROJECT_DIR$/src/containers/CourseList.js" />
         <option value="$PROJECT_DIR$/src/containers/TopicPills.js" />
-        <option value="$PROJECT_DIR$/src/containers/ModuleList.js" />
         <option value="$PROJECT_DIR$/src/services/LessonService.js" />
         <option value="$PROJECT_DIR$/src/services/ModuleService.js" />
         <option value="$PROJECT_DIR$/src/services/TopicService.js" />
         <option value="$PROJECT_DIR$/src/services/CourseService.js" />
         <option value="$PROJECT_DIR$/src/containers/LessonsTab.js" />
+        <option value="$PROJECT_DIR$/src/containers/ModuleList.js" />
       </list>
     </option>
   </component>
@@ -180,13 +181,13 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="171537000" />
+    <option name="totallyTimeSpent" value="171674000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1295" height="695" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.24960254" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.24960254" />
       <window_info anchor="bottom" id="TODO" order="9" />
       <window_info anchor="bottom" id="Docker" order="12" show_stripe_button="false" />
       <window_info anchor="bottom" id="Event Log" order="17" side_tool="true" />
@@ -194,7 +195,7 @@
       <window_info anchor="bottom" id="Run" order="2" />
       <window_info id="npm" order="4" side_tool="true" />
       <window_info id="Structure" order="2" side_tool="true" weight="0.25" />
-      <window_info anchor="bottom" id="Terminal" order="8" visible="true" weight="0.3291592" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="8" visible="true" weight="0.3291592" />
       <window_info id="Favorites" order="7" side_tool="true" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -663,20 +664,20 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/containers/ModuleList.js">
+    <entry file="file://$PROJECT_DIR$/src/containers/LessonsTab.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="293">
-          <caret line="105" column="5" lean-forward="true" selection-start-line="90" selection-start-column="4" selection-end-line="105" selection-end-column="5" />
+        <state relative-caret-position="170">
+          <caret line="94" column="34" selection-start-line="94" selection-start-column="28" selection-end-line="94" selection-end-column="34" />
           <folding>
             <element signature="e#0#26#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/containers/LessonsTab.js">
+    <entry file="file://$PROJECT_DIR$/src/containers/ModuleList.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="120" column="56" selection-start-line="120" selection-start-column="56" selection-end-line="120" selection-end-column="56" />
+        <state relative-caret-position="72">
+          <caret line="92" column="34" selection-start-line="92" selection-start-column="34" selection-end-line="92" selection-end-column="34" />
           <folding>
             <element signature="e#0#26#0" expanded="true" />
           </folding>
