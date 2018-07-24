@@ -123,7 +123,8 @@ export default class LessonsTab
 
         if(this.state.showView){
             return (
-                <div className='row'>
+                <div className='container-fluid'>
+                    <div className='row'>
                         <div className="nav nav-tabs" id='nav-tab' role='tablist'>
                             {lessons}
                             <li className='nav-item'>
@@ -132,21 +133,17 @@ export default class LessonsTab
                                 </button>
                             </li>
                         </div>
-                        <table className='table table-borderless'>
-                            <tbody>
-                                <tr>
-                                    <td>
-                                        <input className='form-control'
-                                               onChange={this.setLessonTitle}
-                                               placeholder='Lesson Name'/>
-                                    </td>
-                                    <td>
-                                        <button onClick={this.createLesson} className="btn btn-primary btn-block">Create</button>
-                                    </td>
-
-                                </tr>
-                            </tbody>
-                        </table>
+                        <div className="input-group mt-2 mb-2">
+                            <input className='form-control'
+                                   onChange={this.setLessonTitle}
+                                   placeholder='Lesson Name'/>
+                            <div>
+                                <button onClick={this.createLesson} className="btn btn-primary btn-block">
+                                    <i className="fa fa-plus"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
                 </div>);
         }else {
             return (

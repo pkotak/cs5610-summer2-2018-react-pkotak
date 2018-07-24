@@ -37,4 +37,12 @@ export default class TopicService{
                 return response.json();
             })
     }
+
+    deleteTopic(topicId) {
+        return fetch(TOPIC_API_URL + '/api/topic/tId'.replace('tId', topicId), {
+            method: 'delete'
+        }).then((response) => {
+            return response.text();
+        })
+    }
 }

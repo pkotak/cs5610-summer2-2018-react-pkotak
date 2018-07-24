@@ -8,10 +8,13 @@ export default class TopicPills extends React.Component{
         this.setLessonId = this.setLessonId.bind(this);
         this.createTopic = this.createTopic.bind(this);
         this.titleChanged = this.titleChanged.bind(this);
+        this.deleteTopic = this.deleteTopic.bind(this);
+        this.toggleAddTopicView = this.toggleAddTopicView.bind(this);
         this.topicService = TopicService.instance;
         this.state={
             moduleId: '', courseId: '', lessonId: '', topic:{title: ''}, topics: [],
-            selectedTopic: 0
+            selectedTopic: 0,
+            showView: false
         }
     }
 
@@ -29,6 +32,10 @@ export default class TopicPills extends React.Component{
         this.setModuleId(newProps.moduleId);
         this.setLessonId(newProps.lessonId);
         this.findAllTopicsForLesson(newProps.lessonId, newProps.moduleId, newProps.courseId);
+    }
+
+    toggleAddTopicView(){
+        this.setState({showView: !(this.state.showView)});
     }
 
     setModuleId(moduleId){
@@ -69,42 +76,64 @@ export default class TopicPills extends React.Component{
             });
     }
 
-    renderTopics(){
-        let topics =  this.state.topics.map((topic, i) => {
+    deleteTopic(topicId) {
+        this.topicService.deleteTopic(topicId)
+            .then(() => {
+                this.findAllTopicsForLesson(this.state.lessonId,this.state.moduleId,this.state.courseId);
+            });
+    }
+
+    renderTopics() {
+        let topics = this.state.topics.map((topic, i) => {
             let active = i === this.state.selectedTopic ? 'active' : '';
-            return(
+            return (
                 <li className="nav-item"
                     onClick={() => this.selectTopic(i)}
                     key={i}>
-                    <a className={`nav-link ${active}`}>{topic.title}</a>
+                    <a className={`nav-link ${active}`}>
+                        {topic.title}
+                        <i className='fa fa-times ml-2' onClick={() => this.deleteTopic(topic.id)}/>
+                    </a>
                 </li>
             )
         });
 
-        return (
-            <div>
-            <table className='table'>
-                <tbody>
-                <tr>
-                    <td width="80%">
-                        <input className='form-control'
-                               onChange={this.titleChanged}
-                               placeholder='Topic'/>
-                    </td>
-                    <td width="20%">
-                        <button className='btn btn-outline-info'
-                                onClick={this.createTopic}>
+        if (this.state.showView) {
+            return (
+                <div className='container-fluid'>
+                    <div className='row'>
+                        {topics}
+                        <li className='nav-item'>
+                            <button className="btn btn-outline-info" onClick={() => {this.toggleAddTopicView()}}>
+                                <i className="fa fa-plus"></i>
+                            </button>
+                        </li>
+                        <div className="input-group mt-2 mb-2">
+                            <input className='form-control'
+                                   onChange={this.titleChanged}
+                                   placeholder='Topic'/>
+                            <div>
+                                <button className='btn btn-primary'
+                                        onClick={this.createTopic}>
+                                    <i className="fa fa-plus"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>);
+        }else {
+            return (
+            <div className='container-fluid'>
+                <div className='row'>
+                    {topics}
+                    <li className='nav-item'>
+                        <button className="btn btn-outline-info" onClick={() => {this.toggleAddTopicView()}}>
                             <i className="fa fa-plus"></i>
                         </button>
-                    </td>
-                </tr>
-                </tbody>
-            </table>
-            <div className='row'>
-                {topics}
-            </div>
-            </div>
-            );
+                    </li>
+                </div>
+            </div>);
+        }
     }
 
     render() {
