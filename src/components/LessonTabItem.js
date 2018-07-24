@@ -15,10 +15,9 @@ export default class LessonTabItem extends React.Component{
                     <Link to={`/course/${this.props.courseId}/module/${this.props.moduleId}/lesson/${this.props.lesson.id}`}>
                         <a className={'nav-link '+this.props.active}>
                             {this.props.lesson.title}
-                            <button className="btn bg-transparent" onClick={() => {
-                                this.props.delete(this.props.lesson.id)}}>
-                                <i className="fa fa-times"></i>
-                            </button>
+                            <i className="fa fa-times ml-2" onClick={() => {
+                                this.props.delete(this.props.lesson.id)
+                            }}></i>
                         </a>
                     </Link>
                 </div>
