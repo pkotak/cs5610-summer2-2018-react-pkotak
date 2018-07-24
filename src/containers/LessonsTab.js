@@ -58,7 +58,6 @@ export default class LessonsTab
     }
 
     componentWillReceiveProps(newProps) {
-        this.setState({selectedLesson: 0});
         this.setModuleId(newProps.moduleId);
         this.setCourseId(newProps.courseId);
         this.findAllLessonsForModule(newProps.moduleId, newProps.courseId);
@@ -165,16 +164,14 @@ export default class LessonsTab
 
     render() {
         return (
-            <Router>
-              <div className='container-fluid'>
-                  <ul className="nav nav-tabs">
-                      {this.renderLessons()}
-                  </ul>
-                  <div className='tab-content'>
-                    <Route path='/course/:courseId/module/:moduleId/lesson/:lessonId' component={LessonEditor}/>
-                  </div>
+          <div className='container-fluid'>
+              <ul className="nav nav-tabs">
+                  {this.renderLessons()}
+              </ul>
+              <div className='tab-content'>
+                <Route path='/course/:courseId/module/:moduleId/lesson/:lessonId' component={LessonEditor}/>
               </div>
-            </Router>
+          </div>
         );
     }
 }

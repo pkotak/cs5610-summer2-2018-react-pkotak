@@ -11,7 +11,7 @@ export default class CourseManager
                 <Router>
                         <div className="container-fluid">
                             <Route path="/courses" component={CourseList}/>
-                            <Route path="/course/:courseId/edit" component={CourseEditor}/>
+                            <Route path="/course/:courseId" component={CourseEditor}/>
                         </div>
                 </Router>
         )

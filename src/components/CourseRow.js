@@ -15,7 +15,7 @@ export default class CourseRow extends React.Component{
             <tr>
                 <td>
                     <i className='fa fa-file-text'/>
-                    <Link to={`/course/${this.props.course.id}/edit`}>
+                    <Link to={`/course/${this.props.course.id}`}>
                         {this.props.course.title}</Link>
                 </td>
                 <td>me</td>

@@ -4,7 +4,7 @@ import ModuleService from '../services/ModuleService';
 import ModuleEditor from '../containers/ModuleEditor';
 import {confirmAlert} from 'react-confirm-alert';
 import 'react-confirm-alert/src/react-confirm-alert.css';
-import {BrowserRouter as Router,Route} from 'react-router-dom';
+import {Route} from 'react-router-dom';
 
 export default class ModuleList extends React.Component{
 
@@ -139,29 +139,27 @@ export default class ModuleList extends React.Component{
 
     render(){
         return(
-            <Router>
-                <div className='row'>
-                    <div className="col-4">
-                        <div className="input-group mb-3">
-                            <div className="input-group-prepend">
-                                <span className="input-group-text"
-                                      id="basic-addon1">
-                                     <i className="fa fa-search"></i>
-                                </span>
-                            </div>
-                            <input type="text"
-                                   className="form-control"
-                                   onChange={this.searchBarChanged}
-                                   placeholder="Search"/>
+            <div className='row'>
+                <div className="col-4">
+                    <div className="input-group mb-3">
+                        <div className="input-group-prepend">
+                            <span className="input-group-text"
+                                  id="basic-addon1">
+                                 <i className="fa fa-search"></i>
+                            </span>
                         </div>
-                        <ul className="list-group">
-                            {this.renderListOfModules()}
-                        </ul>
+                        <input type="text"
+                               className="form-control"
+                               onChange={this.searchBarChanged}
+                               placeholder="Search"/>
                     </div>
-                    <div className='col-8'>
-                        <Route path='/course/:courseId/module/:moduleId' component={ModuleEditor}/>
-                    </div>
+                    <ul className="list-group">
+                        {this.renderListOfModules()}
+                    </ul>
                 </div>
-            </Router>);
+                <div className='col-8'>
+                    <Route path='/course/:courseId/module/:moduleId' component={ModuleEditor}/>
+                </div>
+            </div>);
     }
 }

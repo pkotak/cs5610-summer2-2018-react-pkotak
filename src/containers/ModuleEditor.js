@@ -48,9 +48,6 @@ export default class ModuleEditor extends React.Component {
         return (
             <div className="container-fluid">
                 <LessonsTab moduleId={this.state.moduleId} courseId={this.state.courseId}/>
-                <div className="tab-content">
-                    <Route path="/course/:courseId/module/:moduleId/lesson/:lessonId" component={LessonEditor}/>
-                </div>
             </div>
     );
     }
