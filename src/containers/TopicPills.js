@@ -1,5 +1,8 @@
-import React from 'react';
-import TopicService from '../services/TopicService';
+import React from 'react'
+import TopicService from '../services/TopicService'
+import TopicEditor from './TopicEditor'
+import {Link, Route} from 'react-router-dom'
+
 export default class TopicPills extends React.Component{
     constructor(props){
         super(props);
@@ -87,14 +90,17 @@ export default class TopicPills extends React.Component{
         let topics = this.state.topics.map((topic, i) => {
             let active = i === this.state.selectedTopic ? 'active' : '';
             return (
-                <li className="nav-item"
-                    onClick={() => this.selectTopic(i)}
-                    key={i}>
-                    <a className={`nav-link ${active}`}>
-                        {topic.title}
-                        <i className='fa fa-times ml-2' onClick={() => this.deleteTopic(topic.id)}/>
-                    </a>
-                </li>
+                <Link
+                    to={`/course/${this.props.courseId}/module/${this.props.moduleId}/lesson/${this.props.lessonId}/topic/${topic.id}`}>
+                    <li className="nav-item"
+                        onClick={() => this.selectTopic(i)}
+                        key={i}>
+                        <a className={`nav-link ${active}`}>
+                            <h7 style={{color: 'black'}}>{topic.title}</h7>
+                            <i className='fa fa-times ml-2' onClick={() => this.deleteTopic(topic.id)}/>
+                        </a>
+                    </li>
+                </Link>
             )
         });
 
@@ -142,6 +148,10 @@ export default class TopicPills extends React.Component{
                 <ul className="nav nav-pills">
                     {this.renderTopics()}
                 </ul>
+                <div className='tab-content'>
+                    <Route path='/course/:courseId/module/:moduleId/lesson/:lessonId/topic/:topicId'
+                           component={TopicEditor}/>
+                </div>
             </div>
         )
     }
