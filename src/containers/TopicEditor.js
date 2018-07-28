@@ -1,5 +1,5 @@
 import React from 'react'
-import WidgetListComponent from '../components/WidgetListComponent'
+import WidgetListContainer from './WidgetListContainer'
 import {Provider} from 'react-redux'
 import {createStore} from 'redux'
 import {widgetReducer} from "../reducers/WidgetReducer";
@@ -52,7 +52,7 @@ export default class TopicEditor extends React.Component {
         return (
             <div className='container-fluid'>
                 <Provider store={store}>
-                    <WidgetListComponent/>
+                    <WidgetListContainer/>
                 </Provider>
             </div>
         );
