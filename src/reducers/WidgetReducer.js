@@ -1,12 +1,52 @@
 let initialState = {
-    widgets: [
-        {id: 1, title: 'Widget 1'},
-        {id: 2, title: 'Widget 2'},
-        {id: 3, title: 'Widget 3'},
-        {id: 4, title: 'Widget 4'}
-    ]
+    widgets: []
 }
 
-export const widgetReducer = (state = initialState) => (
-    state
-)
+export const widgetReducer = (
+    state = initialState,
+    action) => {
+    switch (action.type) {
+        case 'DELETE_WIDGET':
+            return {
+                widgets:
+                    state.widgets.filter(
+                        widget => widget.id !== action.widgetId
+                    )
+            }
+        case 'CREATE_WIDGET':
+            return {
+                widgets: [
+                    action.widget,
+                    ...state.widgets
+                ]
+            }
+        case 'UPDATE_WIDGET':
+            return {
+                widgets: state.widgets.map(
+                    widget => {
+                        if (widget.id === action.widget.id) {
+                            return action.widget
+                        }
+                        return widget
+                    }
+                )
+            }
+        case 'SAVE_WIDGETS':
+            fetch('http://localhost:8080/api/widget', {
+                method: 'post',
+                headers: {
+                    'content-type': 'application/json'
+                },
+                body: JSON.stringify(state.widgets)
+            }).then(response => response.json());
+            return state;
+
+        case 'FIND_ALL_WIDGETS':
+            return {
+                widgets: action.widgets
+            }
+
+        default:
+            return state
+    }
+}
