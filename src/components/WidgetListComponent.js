@@ -4,6 +4,7 @@ import {ListWidget} from "./ListWidget";
 import {ParagraphWidget} from "./ParagraphWidget";
 import {ImageWidget} from "./ImageWidget";
 import {LinkWidget} from "./LinkWidget";
+import ToggleButton from 'react-toggle-button';
 
 export default class WidgetListComponent extends React.Component {
     constructor(props) {
@@ -26,10 +27,10 @@ export default class WidgetListComponent extends React.Component {
                         onClick={this.props.saveWidgets}>
                     Save
                 </button>
-                <button className='btn btn-success float-right'
-                        onClick={this.props.togglePreview}>
-                    Toggle Preview
-                </button>
+                <div className='float-right mr-4 mt-2'>
+                    <ToggleButton value={this.props.preview}
+                                  onToggle={this.props.togglePreview}/>
+                </div>
                 <h1>Widget List</h1>
                 <ul className='list-group'>
                     {this.props.widgets.map((widget, index) => {
