@@ -2,8 +2,9 @@ import {connect} from 'react-redux'
 import WidgetListComponent from '../components/WidgetListComponent'
 
 
-const stateToPropertyMapper = state => ({
-    widgets: state.widgets
+const stateToPropertyMapper = (state) => ({
+    widgets: state.widgets,
+    preview: state.preview
 })
 
 const dispatcherToPropertyMapper = dispatch => (
@@ -12,9 +13,8 @@ const dispatcherToPropertyMapper = dispatch => (
             type: 'DELETE_WIDGET',
             widgetId: wid
         }),
-        createWidget: widget => dispatch({
-            type: 'CREATE_WIDGET',
-            widget: widget
+        createWidget: () => dispatch({
+            type: 'CREATE_WIDGET'
         }),
         updateWidget: widget => dispatch({
             type: 'UPDATE_WIDGET',
@@ -23,11 +23,22 @@ const dispatcherToPropertyMapper = dispatch => (
         saveWidgets: () => dispatch({
             type: 'SAVE_WIDGETS'
         }),
-        findAllWidgets: () => {
-            fetch('http://localhost:8080/api/widget')
+        findAllWidgets: (topicId) => {
+            fetch('http://localhost:8080/api/topic/' + topicId + '/widget')
                 .then(response => (response.json()))
                 .then(items => dispatch({type: 'FIND_ALL_WIDGETS', widgets: items}))
-        }
+        },
+        togglePreview: () => dispatch({
+            type: 'PREVIEW'
+        }),
+        moveUp: widget => dispatch({
+            type: 'MOVE_UP',
+            widget: widget
+        }),
+        moveDown: widget => dispatch({
+            type: 'MOVE_DOWN',
+            widget: widget
+        }),
     }
 )
 const WidgetListContainer =
