@@ -29,6 +29,7 @@ export const LinkWidget = ({widget, updateWidget, preview}) => {
                            widget.text = text.value;
                            updateWidget(widget);
                        }}
+                       value={widget.text}
                        className='form-control'
                        placeholder='Link'/>
                 <label htmlFor='urlText'>URL</label>

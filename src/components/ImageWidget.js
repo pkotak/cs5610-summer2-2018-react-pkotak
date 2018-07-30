@@ -28,12 +28,14 @@ export const ImageWidget = ({preview, updateWidget, widget}) => {
                            widget.src = text.value;
                            updateWidget(widget);
                        }}
+                       value={widget.src}
                        className='form-control'
                        placeholder='Image URL'/>
                 <label htmlFor='widgetNameText'>Widget Name</label>
                 <input id='widgetNameText'
                        ref={(node) => widgetName = node}
                        className='form-control'
+                       value={widget.name}
                        onChange={() => {
                            widget.name = widgetName.value;
                            updateWidget(widget);

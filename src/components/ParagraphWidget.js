@@ -29,11 +29,13 @@ export const ParagraphWidget = ({preview, widget, updateWidget}) => {
                               widget.text = text.value;
                               updateWidget(widget);
                           }}
+                          value={widget.text}
                           ref={node => text = node}/>
                 <label htmlFor='widgetNameText'>Widget Name</label>
                 <input id='widgetNameText'
                        ref={(node) => widgetName = node}
                        className='form-control'
+                       value={widget.name}
                        onChange={() => {
                            widget.name = widgetName.value;
                            updateWidget(widget);
