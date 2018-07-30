@@ -52,7 +52,7 @@ export default class TopicEditor extends React.Component {
         return (
             <div className='container-fluid'>
                 <Provider store={store}>
-                    <WidgetListContainer/>
+                    <WidgetListContainer topicId={this.state.topicId}/>
                 </Provider>
             </div>
         );
