@@ -31,41 +31,50 @@ export default class WidgetListComponent extends React.Component {
                     <ToggleButton value={this.props.preview}
                                   onToggle={this.props.togglePreview}/>
                 </div>
-                <h1>Widget List</h1>
+                <h5 className='float-right mr-2'>Preview</h5>
+                <h1>W</h1>
                 <ul className='list-group'>
-                    {this.props.widgets.map((widget, index) => {
+                    {this.props.widgets.sort((w1, w2) => w1.position - w2.position).map((widget, index) => {
                             widget.topicId = this.props.topicId;
-                            return (<li className='list-group-item'
-                            key={index}>
+                        widget.position = index;
+                        return (
+                            <li className='list-group-item'
+                                key={index}>
                                 <div hidden={this.props.preview}>
                                     <button className='btn btn-danger float-right ml-1'
                                             onClick={() => this.props.deleteWidget(widget.id)}>
                                         <i className='fa fa-times'/>
                                     </button>
-                                    <button className='btn btn-warning float-right ml-1'>
+                                    <button className='btn btn-warning float-right ml-1'
+                                            hidden={widget.position === 0}
+                                            onClick={() => this.props.moveUp(widget)}>
                                         <i className='fa fa-arrow-up'/>
                                     </button>
-                                    <button className='btn btn-warning float-right '>
+                                    <button className='btn btn-warning float-right'
+                                            onClick={() => this.props.moveDown(widget)}>
                                         <i className='fa fa-arrow-down'/>
                                     </button>
                                 </div>
-                            <div>
-                                {widget.type === 'LIST' &&
-                                <ListWidget preview={this.props.preview} widget={widget}
-                                            updateWidget={this.props.updateWidget}/>}
-                                {widget.type === 'HEADING' &&
-                                <HeadingWidget preview={this.props.preview} widget={widget}
-                                               updateWidget={this.props.updateWidget}/>}
-                                {widget.type === 'PARAGRAPH' &&
-                                <ParagraphWidget preview={this.props.preview} widget={widget}
-                                                 updateWidget={this.props.updateWidget}/>}
-                                {widget.type === 'IMAGE' &&
-                                <ImageWidget preview={this.props.preview} widget={widget}
-                                             updateWidget={this.props.updateWidget}/>}
-                                {widget.type === 'LINK' &&
-                                <LinkWidget preview={this.props.preview} widget={widget}
-                                            updateWidget={this.props.updateWidget}/>}
-                            </div>
+                                <div>
+                                    {widget.type === 'LIST' &&
+                                    <ListWidget preview={this.props.preview} widget={widget}
+                                                updateWidget={this.props.updateWidget}/>}
+                                    {widget.type === 'HEADING' &&
+                                    <HeadingWidget preview={this.props.preview} widget={widget}
+                                                   updateWidget={this.props.updateWidget}/>}
+                                    {widget.type === 'PARAGRAPH' &&
+                                    <ParagraphWidget preview={this.props.preview} widget={widget}
+                                                     updateWidget={this.props.updateWidget}/>}
+                                    {widget.type === 'IMAGE' &&
+                                    <ImageWidget preview={this.props.preview}
+                                                 widget={widget}
+                                                 updateWidget={this.props.updateWidget}
+                                                 images={this.props.images}
+                                                 searchImages={this.props.searchGoogleImages}/>}
+                                    {widget.type === 'LINK' &&
+                                    <LinkWidget preview={this.props.preview} widget={widget}
+                                                updateWidget={this.props.updateWidget}/>}
+                                </div>
                             </li>)
                         }
                     )}
