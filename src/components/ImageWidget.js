@@ -1,7 +1,8 @@
 import React from 'react'
 
-export const ImageWidget = ({preview, updateWidget, widget}) => {
+export const ImageWidget = ({preview, updateWidget, widget, searchImages, images}) => {
     let text;
+    let search;
     let widgetType;
     let widgetName;
     return (
@@ -40,9 +41,31 @@ export const ImageWidget = ({preview, updateWidget, widget}) => {
                            widget.name = widgetName.value;
                            updateWidget(widget);
                        }}/>
+                <input id='imageSearchText'
+                       className='form-control'
+                       ref={(node) => search = node}/>
+                <button className='btn btn-success'
+                        onClick={() => {
+                            searchImages(search.value);
+                        }}>
+                    Search
+                </button>
                 <h3>Preview</h3>
             </div>
-            <img width='600px' height='200px' src={widget.src}/>
+            <img width='200px'
+                 height='200px'
+                 src={widget.src}/>
+            {images !== undefined &&
+            images.map((img) => {
+                return <img src={img}
+                            width='200px'
+                            onClick={() => {
+                                widget.src = img;
+                                updateWidget(widget);
+                                console.log(widget.src);
+                            }}
+                            height='200px'/>
+            })}
         </div>
     )
 }

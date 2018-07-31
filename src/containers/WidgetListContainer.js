@@ -1,10 +1,10 @@
 import {connect} from 'react-redux'
 import WidgetListComponent from '../components/WidgetListComponent'
 
-
 const stateToPropertyMapper = (state) => ({
     widgets: state.widgets,
-    preview: state.preview
+    preview: state.preview,
+    images: state.images
 })
 
 const dispatcherToPropertyMapper = dispatch => (
@@ -39,6 +39,11 @@ const dispatcherToPropertyMapper = dispatch => (
             type: 'MOVE_DOWN',
             widget: widget
         }),
+        searchGoogleImages: (searchQuery) => {
+            fetch('http://localhost:8080/api/image/search/' + searchQuery.replace(' ', '-'))
+                .then(response => response.json())
+                .then(items => dispatch({type: 'SEARCH_IMAGES', images: items}));
+        }
     }
 )
 const WidgetListContainer =
