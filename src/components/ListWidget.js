@@ -30,7 +30,7 @@ export const ListWidget = ({widget, updateWidget, preview}) => {
                               widget.listItems = text.value;
                               updateWidget(widget);
                           }}>
-            </textarea>
+                </textarea>
                 <label><input ref={node => ordered = node}
                               type='checkbox'
                               checked={widget.ordered}
@@ -46,16 +46,17 @@ export const ListWidget = ({widget, updateWidget, preview}) => {
                            widget.name = widgetName.value;
                            updateWidget(widget);
                        }}/>
+
+                <h4>Preview</h4>
             </div>
-            <h4>Preview</h4>
-            {(!widget.ordered && widget.listItems !== null) &&
+            {(!widget.ordered && widget.listItems !== undefined) &&
             <ul>
                 {widget.listItems.split('\n').map((item, index) => (
                     <li key={index}>{item}</li>
                 ))}
             </ul>
             }
-            {(widget.ordered && widget.listItems !== null) &&
+            {(widget.ordered && widget.listItems !== undefined) &&
             <ol>
                 {widget.listItems.split('\n').map((item, index) => (
                     <li key={index}>{item}</li>
