@@ -1,4 +1,4 @@
-import React from'react';
+import React from 'react';
 import CourseRow from "../components/CourseRow";
 import CourseService from "../services/CourseService";
 import '../styles/styles.css';
@@ -16,7 +16,7 @@ export default class CourseList extends React.Component{
         this.toggleView = this.toggleView.bind(this);
         this.renderView = this.renderView.bind(this);
         this.onSetSidebarOpen = this.onSetSidebarOpen.bind(this);
-        this.state = {view: 'list', course:{},courses: [], sidebarOpen: true};
+        this.state = {view: 'list', course: {}, courses: [], sidebarOpen: false};
     }
 
     onSetSidebarOpen = function(open) {
