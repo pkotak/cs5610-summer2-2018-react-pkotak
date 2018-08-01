@@ -1,10 +1,13 @@
+import * as constants from '../constants/constants'
+
 let _singleton = Symbol();
-const COURSE_API_URL = 'https://cs5610-summer2-2018-paarthk.herokuapp.com/api/course'
+const COURSE_API_URL = constants.BASE_URL + '/api/course'
 export default class CourseService{
     constructor(singletonToken) {
         if (_singleton != singletonToken)
             throw new Error('Cannot instantiate');
     }
+
     static get instance(){
         if(!this[_singleton])
             this[_singleton] = new CourseService(_singleton);
@@ -30,7 +33,7 @@ export default class CourseService{
             method : 'post',
             body : JSON.stringify(course),
             headers : {
-               'Content-Type': 'application/json'
+                'Content-Type': 'application/json'
             }
         }).then(function (response) {
             return response.json();

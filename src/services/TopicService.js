@@ -1,5 +1,6 @@
+import * as constants from '../constants/constants'
+
 let _singleton = Symbol();
-const TOPIC_API_URL = 'https://cs5610-summer2-2018-paarthk.herokuapp.com';
 
 export default class TopicService{
     constructor(singletonToken) {
@@ -14,7 +15,7 @@ export default class TopicService{
     }
 
     findAllTopicsForLesson(lessonId, moduleId, courseId){
-        return fetch(TOPIC_API_URL+'/api/course/cId/module/mId/lesson/lId/topic'
+        return fetch(constants.BASE_URL + '/api/course/cId/module/mId/lesson/lId/topic'
             .replace('cId', courseId)
             .replace('mId', moduleId)
             .replace('lId', lessonId))
@@ -24,7 +25,7 @@ export default class TopicService{
     }
 
     createTopic(lessonId, moduleId, courseId, topic){
-        return fetch(TOPIC_API_URL+'/api/course/cId/module/mId/lesson/lId/topic'
+        return fetch(constants.BASE_URL + '/api/course/cId/module/mId/lesson/lId/topic'
             .replace('cId', courseId)
             .replace('mId', moduleId)
             .replace('lId', lessonId),{
@@ -39,7 +40,7 @@ export default class TopicService{
     }
 
     deleteTopic(topicId) {
-        return fetch(TOPIC_API_URL + '/api/topic/tId'.replace('tId', topicId), {
+        return fetch(constants.BASE_URL + '/api/topic/tId'.replace('tId', topicId), {
             method: 'delete'
         }).then((response) => {
             return response.text();

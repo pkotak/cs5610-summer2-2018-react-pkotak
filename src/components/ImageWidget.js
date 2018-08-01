@@ -62,7 +62,6 @@ export const ImageWidget = ({preview, updateWidget, widget, searchImages, images
                             onClick={() => {
                                 widget.src = img;
                                 updateWidget(widget);
-                                console.log(widget.src);
                             }}
                             height='200px'/>
             })}

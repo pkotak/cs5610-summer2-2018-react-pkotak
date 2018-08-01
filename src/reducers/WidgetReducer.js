@@ -1,3 +1,5 @@
+import * as constants from '../constants/constants'
+
 let initialState = {
     widgets: [],
     preview: false,
@@ -37,16 +39,16 @@ export const widgetReducer = (
         case 'UPDATE_WIDGET':
             return {
                 widgets: state.widgets.map(widget => {
-                        if (widget.id === action.widget.id) {
-                            return action.widget
-                        }
-                        return widget
+                    if (widget.id === action.widget.id) {
+                        return action.widget
+                    }
+                    return widget
                 })
             }
 
         case 'SAVE_WIDGETS':
             var topicId = state.widgets[0].topicId;
-            fetch('http://localhost:8080/api/topic/' + topicId + '/widget', {
+            fetch(constants.BASE_URL + '/api/topic/' + topicId + '/widget', {
                 method: 'post',
                 headers: {
                     'content-type': 'application/json'

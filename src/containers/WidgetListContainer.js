@@ -1,5 +1,6 @@
 import {connect} from 'react-redux'
 import WidgetListComponent from '../components/WidgetListComponent'
+import * as constants from '../constants/constants'
 
 const stateToPropertyMapper = (state) => ({
     widgets: state.widgets,
@@ -24,7 +25,7 @@ const dispatcherToPropertyMapper = dispatch => (
             type: 'SAVE_WIDGETS'
         }),
         findAllWidgets: (topicId) => {
-            fetch('http://localhost:8080/api/topic/' + topicId + '/widget')
+            fetch(constants.BASE_URL + '/api/topic/' + topicId + '/widget')
                 .then(response => (response.json()))
                 .then(items => dispatch({type: 'FIND_ALL_WIDGETS', widgets: items}))
         },
@@ -40,7 +41,7 @@ const dispatcherToPropertyMapper = dispatch => (
             widget: widget
         }),
         searchGoogleImages: (searchQuery) => {
-            fetch('http://localhost:8080/api/image/search/' + searchQuery.replace(' ', '-'))
+            fetch(constants.BASE_URL + '/api/image/search/' + searchQuery.replace(' ', '-'))
                 .then(response => response.json())
                 .then(items => dispatch({type: 'SEARCH_IMAGES', images: items}));
         }
