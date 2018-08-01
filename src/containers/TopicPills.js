@@ -22,7 +22,6 @@ export default class TopicPills extends React.Component{
     }
 
     componentDidMount() {
-        this.selectTopic(0);
         this.setCourseId(this.props.courseId);
         this.setModuleId(this.props.moduleId);
         this.setLessonId(this.props.lessonId);
@@ -30,7 +29,6 @@ export default class TopicPills extends React.Component{
     }
 
     componentWillReceiveProps(newProps){
-        this.selectTopic(0);
         this.setCourseId(newProps.courseId);
         this.setModuleId(newProps.moduleId);
         this.setLessonId(newProps.lessonId);
