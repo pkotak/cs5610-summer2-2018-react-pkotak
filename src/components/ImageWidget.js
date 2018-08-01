@@ -41,15 +41,31 @@ export const ImageWidget = ({preview, updateWidget, widget, searchImages, images
                            widget.name = widgetName.value;
                            updateWidget(widget);
                        }}/>
-                <input id='imageSearchText'
-                       className='form-control'
-                       ref={(node) => search = node}/>
-                <button className='btn btn-success'
-                        onClick={() => {
-                            searchImages(search.value);
-                        }}>
-                    Search
-                </button>
+
+                <div className="input-group mb-3 mt-2">
+                    <div className="input-group-prepend">
+                            <span className="input-group-text"
+                                  id="basic-addon1">
+                                 <i className="fa fa-search"></i>
+                            </span>
+                    </div>
+                    <input id='imageSearchText'
+                           placeholder='Google Search Images'
+                           className='form-control'
+                           ref={(node) => search = node}/>
+                    <button className='btn btn-outline-success ml-2 mt-2'
+                            onClick={() => {
+                                searchImages(search.value);
+                            }}>
+                        Search
+                    </button>
+                </div>
+                {/*<button className='btn btn-success mt-2'*/}
+                {/*onClick={() => {*/}
+                {/*searchImages(search.value);*/}
+                {/*}}>*/}
+                {/*Search*/}
+                {/*</button>*/}
                 <h3>Preview</h3>
             </div>
             <img width='200px'
