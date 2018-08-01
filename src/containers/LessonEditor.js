@@ -37,7 +37,7 @@ export default class LessonEditor extends React.Component{
     }
     render(){
         return(
-            <div>
+            <div className='mt-2'>
                 <TopicPills courseId={this.state.courseId}
                             moduleId={this.state.moduleId}
                             lessonId={this.state.lessonId}/>
