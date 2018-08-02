@@ -32,7 +32,7 @@ export default class WidgetListComponent extends React.Component {
                                   onToggle={this.props.togglePreview}/>
                 </div>
                 <h5 className='float-right mr-2'>Preview</h5>
-                <h1>W</h1>
+                <h1>Widget List</h1>
                 <ul className='list-group'>
                     {this.props.widgets.sort((w1, w2) => w1.position - w2.position).map((widget, index) => {
                             widget.topicId = this.props.topicId;
