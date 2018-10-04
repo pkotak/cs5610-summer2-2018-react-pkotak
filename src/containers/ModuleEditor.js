@@ -1,6 +1,4 @@
 import React from 'react';
-import {Route} from 'react-router-dom';
-import LessonEditor from './LessonEditor';
 import LessonsTab from "./LessonsTab";
 
 export default class ModuleEditor extends React.Component {

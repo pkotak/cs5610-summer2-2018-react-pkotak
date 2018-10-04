@@ -5,6 +5,7 @@ import {ParagraphWidget} from "./ParagraphWidget";
 import {ImageWidget} from "./ImageWidget";
 import {LinkWidget} from "./LinkWidget";
 import ToggleButton from 'react-toggle-button';
+import {YoutubeWidget} from "./YouTubeWidget";
 
 export default class WidgetListComponent extends React.Component {
     constructor(props) {
@@ -73,6 +74,9 @@ export default class WidgetListComponent extends React.Component {
                                                  searchImages={this.props.searchGoogleImages}/>}
                                     {widget.type === 'LINK' &&
                                     <LinkWidget preview={this.props.preview} widget={widget}
+                                                updateWidget={this.props.updateWidget}/>}
+                                    {widget.type === 'YOUTUBE' &&
+                                    <YoutubeWidget preview={this.props.preview} widget={widget}
                                                 updateWidget={this.props.updateWidget}/>}
                                 </div>
                             </li>)

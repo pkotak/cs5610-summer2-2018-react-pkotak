@@ -21,6 +21,7 @@ export const ListWidget = ({widget, updateWidget, preview}) => {
                     <option value='PARAGRAPH'>Paragraph Widget</option>
                     <option value='IMAGE'>Image Widget</option>
                     <option value='LINK'>Link Widget</option>
+                    <option value='YOUTUBE'>Youtube Widget</option>
                 </select>
                 <textarea ref={node => text = node}
                           className='form-control'

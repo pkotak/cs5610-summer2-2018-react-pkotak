@@ -20,6 +20,7 @@ export const ParagraphWidget = ({preview, widget, updateWidget}) => {
                     <option value='PARAGRAPH'>Paragraph Widget</option>
                     <option value='IMAGE'>Image Widget</option>
                     <option value='LINK'>Link Widget</option>
+                    <option value='YOUTUBE'>Youtube Widget</option>
                 </select>
                 <label htmlFor='paraText'>Paragraph Text</label>
                 <textarea id='paraText'
