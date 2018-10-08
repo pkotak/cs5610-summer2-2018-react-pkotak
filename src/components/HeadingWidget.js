@@ -21,6 +21,8 @@ export const HeadingWidget = ({preview, widget, updateWidget}) => {
                     <option value='PARAGRAPH'>Paragraph Widget</option>
                     <option value='IMAGE'>Image Widget</option>
                     <option value='LINK'>Link Widget</option>
+                    <option value='HTML'>HTML widget</option>
+
                 </select>
                 <label htmlFor='text'>Heading Text</label>
                 <input id='text'
