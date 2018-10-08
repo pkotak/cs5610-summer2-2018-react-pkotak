@@ -28,7 +28,7 @@ export const YoutubeWidget = ({widget, updateWidget, preview}) => {
                        ref={node => iFrameUrl = node}
                        onChange={() => {
                            var id = iFrameUrl.value.substring(iFrameUrl.value.lastIndexOf('/'));
-                           widget.iFrame = id;
+                           widget.youtubeIframe = id;
                            updateWidget(widget);
                        }}
                        className='form-control'
@@ -45,20 +45,10 @@ export const YoutubeWidget = ({widget, updateWidget, preview}) => {
             </div>
             <iframe width="560"
                     height="315"
-                    src={`https://www.youtube.com/embed/${widget.iFrame}`}
+                    src={`https://www.youtube.com/embed/${widget.youtubeIframe}`}
                     frameBorder="0"
                     allow="autoplay; encrypted-media"
                     allowFullScreen/>
-            <iframe width="560"
-                    height="315"
-                    frameBorder="0"
-                    src="https://docs.google.com/document/d/e/2PACX-1vR5LGjQwR6SaXg5jdZMlFVA8-s2YqjfSY7zlpYMQkdmPoEywYbjKHEO0YQTSBpvkAOuzEBnw_FxKsR6/pub?embedded=true">
-                allowFullScreen
-            </iframe>
-            <iframe
-                src="https://docs.google.com/presentation/d/e/2PACX-1vRwPL4Rkvxh7SyxhRz8eLhj-8dqx99QRfhdf_BMLQw6BJ0xaWdzj5jd-Tx5F-UhjiO-9TIJmpUrK-fk/embed?start=false&loop=false&delayms=3000"
-                frameBorder="0" width="560" height="315" allowFullScreen="true" mozallowfullscreen="true"
-                webkitallowfullscreen="true"></iframe>
         </div>
     )
 }
