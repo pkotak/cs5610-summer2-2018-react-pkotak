@@ -1,6 +1,6 @@
 import React from 'react'
 
-export const YoutubeWidget = ({widget, updateWidget, preview}) => {
+export const GoogleSlideWidget = ({widget, updateWidget, preview}) => {
     let iFrameUrl = '';
     let widgetType;
     let widgetName;
@@ -29,8 +29,7 @@ export const YoutubeWidget = ({widget, updateWidget, preview}) => {
                 <input id='urlText'
                        ref={node => iFrameUrl = node}
                        onChange={() => {
-                           var id = iFrameUrl.value.substring(iFrameUrl.value.lastIndexOf('/'));
-                           widget.youtubeIframe = id;
+                           widget.slidesIframe = iFrameUrl.value;
                            updateWidget(widget);
                        }}
                        className='form-control'
@@ -45,12 +44,13 @@ export const YoutubeWidget = ({widget, updateWidget, preview}) => {
                        }}/>
                 <h3>Preview</h3>
             </div>
-            <iframe width="560"
-                    height="315"
-                    src={`https://www.youtube.com/embed/${widget.youtubeIframe}`}
-                    frameBorder="0"
-                    allow="autoplay; encrypted-media"
-                    allowFullScreen/>
+            <iframe
+                src={widget.slidesIframe}
+                frameBorder="0"
+                width="640"
+                height="389"
+                allowFullScreen="true"
+                webkitallowfullscreen="true"/>
         </div>
     )
 }

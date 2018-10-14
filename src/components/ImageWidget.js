@@ -22,6 +22,8 @@ export const ImageWidget = ({preview, updateWidget, widget, searchImages, images
                     <option value='IMAGE'>Image Widget</option>
                     <option value='LINK'>Link Widget</option>
                     <option value='YOUTUBE'>Youtube Widget</option>
+                    <option value='SLIDE'>Google Slides Widget</option>
+                    <option value='DOC'>Google Doc Widget</option>
                 </select>
                 <label htmlFor='urlText'>Image URL</label>
                 <input id='urlText'
