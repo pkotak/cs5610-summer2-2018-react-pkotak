@@ -5,6 +5,7 @@ import {ParagraphWidget} from "./ParagraphWidget";
 import {ImageWidget} from "./ImageWidget";
 import {LinkWidget} from "./LinkWidget";
 import ToggleButton from 'react-toggle-button';
+<<<<<<< HEAD
 import {HTMLWidget} from './HTMLWidget'
 import 'froala-editor/js/froala_editor.pkgd.min.js';
 
@@ -16,6 +17,11 @@ import 'font-awesome/css/font-awesome.css';
 
 import FroalaEditor from 'react-froala-wysiwyg';
 
+=======
+import {YoutubeWidget} from "./YouTubeWidget";
+import {GoogleSlideWidget} from "./GoogleSlideWidget";
+import {GoogleDocWidget} from "./GoogleDocWidget";
+>>>>>>> iframe
 
 export default class WidgetListComponent extends React.Component {
     constructor(props) {
@@ -85,6 +91,7 @@ export default class WidgetListComponent extends React.Component {
                                     {widget.type === 'LINK' &&
                                     <LinkWidget preview={this.props.preview} widget={widget}
                                                 updateWidget={this.props.updateWidget}/>}
+<<<<<<< HEAD
 
                                     {widget.type=== 'HTML' &&
                                     <HTMLWidget preview={this.props.preview} widget={widget}
@@ -92,6 +99,17 @@ export default class WidgetListComponent extends React.Component {
 
 
                                     }
+=======
+                                    {widget.type === 'YOUTUBE' &&
+                                    <YoutubeWidget preview={this.props.preview} widget={widget}
+                                                updateWidget={this.props.updateWidget}/>}
+                                    {widget.type === 'SLIDE' &&
+                                    <GoogleSlideWidget preview={this.props.preview} widget={widget}
+                                                   updateWidget={this.props.updateWidget}/>}
+                                    {widget.type === 'DOC' &&
+                                    <GoogleDocWidget preview={this.props.preview} widget={widget}
+                                                       updateWidget={this.props.updateWidget}/>}
+>>>>>>> iframe
                                 </div>
                             </li>)
                         }

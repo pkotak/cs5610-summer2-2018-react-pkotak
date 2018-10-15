@@ -1,10 +1,10 @@
 import React from 'react'
 
-export const LinkWidget = ({widget, updateWidget, preview}) => {
-    let text;
-    let url;
+export const YoutubeWidget = ({widget, updateWidget, preview}) => {
+    let iFrameUrl = '';
     let widgetType;
     let widgetName;
+
     return (
         <div>
             <div hidden={preview}>
@@ -21,30 +21,16 @@ export const LinkWidget = ({widget, updateWidget, preview}) => {
                     <option value='PARAGRAPH'>Paragraph Widget</option>
                     <option value='IMAGE'>Image Widget</option>
                     <option value='LINK'>Link Widget</option>
-<<<<<<< HEAD
-                    <option value='HTML'>HTML widget</option>
-
-=======
                     <option value='YOUTUBE'>Youtube Widget</option>
                     <option value='SLIDE'>Google Slides Widget</option>
                     <option value='DOC'>Google Doc Widget</option>
->>>>>>> iframe
                 </select>
-                <label htmlFor='linkText'>Link Text</label>
-                <input id='linkText'
-                       ref={node => text = node}
-                       onChange={() => {
-                           widget.text = text.value;
-                           updateWidget(widget);
-                       }}
-                       value={widget.text}
-                       className='form-control'
-                       placeholder='Link'/>
                 <label htmlFor='urlText'>URL</label>
                 <input id='urlText'
-                       ref={node => url = node}
+                       ref={node => iFrameUrl = node}
                        onChange={() => {
-                           widget.href = url.value;
+                           var id = iFrameUrl.value.substring(iFrameUrl.value.lastIndexOf('/'));
+                           widget.youtubeIframe = id;
                            updateWidget(widget);
                        }}
                        className='form-control'
@@ -59,7 +45,12 @@ export const LinkWidget = ({widget, updateWidget, preview}) => {
                        }}/>
                 <h3>Preview</h3>
             </div>
-            <a href={widget.href}>{widget.text}</a>
+            <iframe width="560"
+                    height="315"
+                    src={`https://www.youtube.com/embed/${widget.youtubeIframe}`}
+                    frameBorder="0"
+                    allow="autoplay; encrypted-media"
+                    allowFullScreen/>
         </div>
     )
 }
