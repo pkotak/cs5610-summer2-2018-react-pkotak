@@ -20,7 +20,7 @@ import FroalaEditor from 'react-froala-wysiwyg';
 export const HTMLWidget = ({preview, widget, updateWidget}) => {
     let text;
     let widgetType;
-    widget.html = (widget.html)? widget.html : ""
+    widget.htmlContent = (widget.htmlContent)? widget.htmlContent : ""
     console.log(widget);
     return (
         <div>
@@ -43,16 +43,17 @@ export const HTMLWidget = ({preview, widget, updateWidget}) => {
                 </select>
                 <label htmlFor='html'>HTML Text</label>
                 <FroalaEditor tag="textarea"
-                              model={widget.html}
+                              model={widget.htmlContent}
                               onModelChange={(updatedHTML)=>{
-                                  widget.html = updatedHTML;
+                                  widget.htmlContent = updatedHTML;
                                   updateWidget(widget);
                               }}
                 />
 
             </div>
             <h4>Preview </h4>
-            {widget.html}
+            <p dangerouslySetInnerHTML={{__html: widget.htmlContent}} />
+
         </div>
     )
 }
