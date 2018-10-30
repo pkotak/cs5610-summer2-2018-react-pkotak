@@ -2,6 +2,7 @@ import React from 'react';
 import LessonService from "../services/LessonService";
 import LessonTabItem from "../components/LessonTabItem";
 import LessonEditor from '../containers/LessonEditor';
+import Dragula from 'react-dragula';
 import {BrowserRouter as Router,Route} from 'react-router-dom';
 import {confirmAlert} from "react-confirm-alert";
 
@@ -123,7 +124,7 @@ export default class LessonsTab
 
         if(this.state.showView){
             return (
-                <div className='container-fluid'>
+                <div className='container-fluid' ref={this.dragulaDecorator}>
                     <div className='row'>
                         <div className="nav nav-tabs" id='nav-tab' role='tablist'>
                             {lessons}
@@ -147,7 +148,7 @@ export default class LessonsTab
                 </div>);
         }else {
             return (
-                    <div className="nav nav-tabs" id='nav-tab' role='tablist'>
+                    <div className="nav nav-tabs" id='nav-tab' role='tablist' ref={this.dragulaDecorator}>
                         {lessons}
                         <li className='nav-item'>
                             <button className="btn btn-outline-info" onClick={() => {this.toggleAddLessonView()}}>
@@ -171,4 +172,11 @@ export default class LessonsTab
           </div>
         );
     }
+
+    dragulaDecorator = (componentBackingInstance) => {
+        if (componentBackingInstance) {
+            let options = { };
+            Dragula([componentBackingInstance], options);
+        }
+    };
 }

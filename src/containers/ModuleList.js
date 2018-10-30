@@ -3,6 +3,7 @@ import ModuleListItem from '../components/ModuleListItem';
 import ModuleService from '../services/ModuleService';
 import ModuleEditor from '../containers/ModuleEditor';
 import {confirmAlert} from 'react-confirm-alert';
+import Dragula from 'react-dragula';
 import 'react-confirm-alert/src/react-confirm-alert.css';
 import {Route} from 'react-router-dom';
 
@@ -119,7 +120,7 @@ export default class ModuleList extends React.Component{
                                 position={index}/>);
             });
         return (
-            <div>
+            <div ref={this.dragulaDecorator}>
                 {modules}
                 <div className="input-group mb-3">
                     <input className="form-control"
@@ -162,4 +163,11 @@ export default class ModuleList extends React.Component{
                 </div>
             </div>);
     }
+
+    dragulaDecorator = (componentBackingInstance) => {
+        if (componentBackingInstance) {
+            let options = { };
+            Dragula([componentBackingInstance], options);
+        }
+    };
 }

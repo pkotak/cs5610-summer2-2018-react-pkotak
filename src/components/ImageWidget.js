@@ -21,13 +21,10 @@ export const ImageWidget = ({preview, updateWidget, widget, searchImages, images
                     <option value='PARAGRAPH'>Paragraph Widget</option>
                     <option value='IMAGE'>Image Widget</option>
                     <option value='LINK'>Link Widget</option>
-<<<<<<< HEAD
                     <option value='HTML'>HTML widget</option>
-=======
                     <option value='YOUTUBE'>Youtube Widget</option>
                     <option value='SLIDE'>Google Slides Widget</option>
                     <option value='DOC'>Google Doc Widget</option>
->>>>>>> iframe
                 </select>
                 <label htmlFor='urlText'>Image URL</label>
                 <input id='urlText'
