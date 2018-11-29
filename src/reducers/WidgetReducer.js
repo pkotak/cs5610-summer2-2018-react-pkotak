@@ -3,7 +3,9 @@ import * as constants from '../constants/constants'
 let initialState = {
     widgets: [],
     preview: false,
-    images: []
+    images: [],
+    //IsEditable
+    isAdmin : false
 }
 
 export const widgetReducer = (

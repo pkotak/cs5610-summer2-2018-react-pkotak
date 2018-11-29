@@ -4,8 +4,9 @@ import * as constants from '../constants/constants'
 
 const stateToPropertyMapper = (state) => ({
     widgets: state.widgets,
-    preview: state.preview,
-    images: state.images
+    preview: !state.isAdmin,
+    images: state.images,
+    isAdmin : state.isAdmin
 })
 
 const dispatcherToPropertyMapper = dispatch => (

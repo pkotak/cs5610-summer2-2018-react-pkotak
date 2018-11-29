@@ -5,8 +5,8 @@ import ModuleEditor from '../containers/ModuleEditor';
 import {confirmAlert} from 'react-confirm-alert';
 import 'react-confirm-alert/src/react-confirm-alert.css';
 import {Route} from 'react-router-dom';
-
-export default class ModuleList extends React.Component{
+import {connect} from 'react-redux'
+class ModuleListContainer extends React.Component{
 
     constructor(props) {
         super(props);
@@ -116,12 +116,14 @@ export default class ModuleList extends React.Component{
                                 key={index}
                                 delete={this.confirmDelete}
                                 select={this.selectModule}
-                                position={index}/>);
+                                position={index}
+                                isAdmin={this.props.isAdmin}
+                />);
             });
         return (
             <div>
                 {modules}
-                <div className="input-group mb-3">
+                {(this.props.isAdmin) ? <div className="input-group mb-3">
                     <input className="form-control"
                            onChange={this.titleChanged}
                            placeholder="Module 1.1"/>
@@ -131,7 +133,7 @@ export default class ModuleList extends React.Component{
                             <i className="fa fa-plus"></i>
                         </button>
                     </div>
-                </div>
+                </div> : null}
             </div>
 
         );
@@ -163,3 +165,11 @@ export default class ModuleList extends React.Component{
             </div>);
     }
 }
+
+const mapStatetoProps = (state) => {
+    return{
+        isAdmin : state.isAdmin
+    }
+}
+
+export default connect(mapStatetoProps)(ModuleListContainer)

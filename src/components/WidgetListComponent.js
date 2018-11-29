@@ -34,6 +34,7 @@ export default class WidgetListComponent extends React.Component {
     render() {
         return (
             <div className='mb-4'>
+                {(this.props.isAdmin) ? <div>
                 <button className='btn btn-success float-right'
                         onClick={this.props.saveWidgets}>
                     Save
@@ -43,6 +44,7 @@ export default class WidgetListComponent extends React.Component {
                                   onToggle={this.props.togglePreview}/>
                 </div>
                 <h5 className='float-right mr-2'>Preview</h5>
+                </div> : null }
                 <h1>Widget List</h1>
                 <ul className='list-group'>
                     {this.props.widgets.sort((w1, w2) => w1.position - w2.position).map((widget, index) => {
@@ -97,12 +99,12 @@ export default class WidgetListComponent extends React.Component {
                         }
                     )}
                 </ul>
-                <button className='btn btn-info float-right mt-2'
+                {(this.props.isAdmin) ? <button className='btn btn-info float-right mt-2'
                         onClick={() => {
                             this.props.createWidget()
                         }}>
                     <i className='fa fa-plus-circle'/>
-                </button>
+                </button> : null}
             </div>
         )
     }
