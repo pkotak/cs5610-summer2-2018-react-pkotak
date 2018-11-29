@@ -13,6 +13,7 @@ export default class ModuleListItem
                     <Link to={`/course/${this.props.courseId}/module/${this.props.module.id}`}>
                         <h7 style={{color: 'black'}}>{this.props.title}</h7>
                     </Link>
+                    {(this.props.isAdmin) ?
                     <span className="pull-right">
                         <button className='btn bg-transparent' onClick={() => {
                             this.props.delete(this.props.module.id);
@@ -20,7 +21,7 @@ export default class ModuleListItem
                             <i className="fa fa-trash"></i>
                         </button>
                         <i className="fa fa-pencil"></i>
-                    </span>
+                    </span> : null}
                 </li>
         );
     }

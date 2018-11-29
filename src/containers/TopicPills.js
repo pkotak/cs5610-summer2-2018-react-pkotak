@@ -2,8 +2,8 @@ import React from 'react'
 import TopicService from '../services/TopicService'
 import TopicEditor from './TopicEditor'
 import {Link, Route} from 'react-router-dom'
-
-export default class TopicPills extends React.Component{
+import {connect} from 'react-redux'
+class TopicPillsContainer extends React.Component{
     constructor(props){
         super(props);
         this.setModuleId = this.setModuleId.bind(this);
@@ -95,7 +95,7 @@ export default class TopicPills extends React.Component{
                         key={i}>
                         <a className={`nav-link ${active}`}>
                             <h7 style={{color: 'black'}}>{topic.title}</h7>
-                            <i className='fa fa-times ml-2' onClick={() => this.deleteTopic(topic.id)}/>
+                            {(this.props.isAdmin) ? <i className='fa fa-times ml-2' onClick={() => this.deleteTopic(topic.id)}/> : null}
                         </a>
                     </li>
                 </Link>
@@ -131,9 +131,10 @@ export default class TopicPills extends React.Component{
                 <div className='row'>
                     {topics}
                     <li className='nav-item'>
+                        {(this.props.isAdmin) ?
                         <button className="btn btn-outline-info" onClick={() => {this.toggleAddTopicView()}}>
-                            <i className="fa fa-plus"></i>
-                        </button>
+                              <i className="fa fa-plus"></i>
+                        </button> : null}
                     </li>
                 </div>
             </div>);
@@ -154,3 +155,11 @@ export default class TopicPills extends React.Component{
         )
     }
 }
+
+const mapStatetoProps = (state) => {
+    return{
+        isAdmin : state.isAdmin
+    }
+}
+
+export default connect(mapStatetoProps)(TopicPillsContainer)
