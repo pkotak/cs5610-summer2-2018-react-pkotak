@@ -15,8 +15,9 @@ import FroalaEditor from 'react-froala-wysiwyg';
 import {YoutubeWidget} from "./YouTubeWidget";
 import {GoogleSlideWidget} from "./GoogleSlideWidget";
 import {GoogleDocWidget} from "./GoogleDocWidget";
+import {connect} from 'react-redux'
 
-export default class WidgetListComponent extends React.Component {
+ export default class WidgetListComponent extends React.Component {
     constructor(props) {
         super(props);
     }
@@ -33,6 +34,7 @@ export default class WidgetListComponent extends React.Component {
     render() {
         return (
             <div className='mb-4'>
+
                 <button className='btn btn-success float-right'
                         onClick={this.props.saveWidgets}>
                     Save
@@ -50,6 +52,7 @@ export default class WidgetListComponent extends React.Component {
                         return (
                             <li className='list-group-item'
                                 key={index}>
+
                                 <div hidden={this.props.preview}>
                                     <button className='btn btn-danger float-right ml-1'
                                             onClick={() => this.props.deleteWidget(widget.id)}>
@@ -104,13 +107,15 @@ export default class WidgetListComponent extends React.Component {
                         }
                     )}
                 </ul>
+                {(this.props.course.isEditable)?
                 <button className='btn btn-info float-right mt-2'
                         onClick={() => {
                             this.props.createWidget()
                         }}>
                     <i className='fa fa-plus-circle'/>
-                </button>
+                </button> : null}
             </div>
         )
     }
 }
+

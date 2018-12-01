@@ -117,7 +117,9 @@ export default class LessonsTab
                               active={active}
                               lesson={lesson}
                               select={this.selectLesson}
-                              delete={this.confirmDelete}/>
+                              delete={this.confirmDelete}
+                              editable={this.props.editable}
+               />
            )
        });
 
@@ -149,11 +151,15 @@ export default class LessonsTab
             return (
                     <div className="nav nav-tabs" id='nav-tab' role='tablist'>
                         {lessons}
-                        <li className='nav-item'>
-                            <button className="btn btn-outline-info" onClick={() => {this.toggleAddLessonView()}}>
-                                <i className="fa fa-plus"></i>
-                            </button>
-                        </li>
+                        {(this.props.editable)?
+                            <li className='nav-item'>
+                                <button className="btn btn-outline-info" onClick={() => {
+                                    this.toggleAddLessonView()
+                                }}>
+                                    <i className="fa fa-plus"></i>
+                                </button>
+                            </li>:null
+                        }
                     </div>);
         }
 

@@ -3,9 +3,10 @@ import WidgetListComponent from '../components/WidgetListComponent'
 import * as constants from '../constants/constants'
 
 const stateToPropertyMapper = (state) => ({
-    widgets: state.widgets,
-    preview: state.preview,
-    images: state.images
+    widgets: state.widget.widgets,
+    preview: state.widget.preview,
+    images: state.widget.images,
+    course : state.course
 })
 
 const dispatcherToPropertyMapper = dispatch => (

@@ -11,16 +11,18 @@ export default class ModuleListItem
                 <li className={'list-group-item list-group-item-action '+this.props.active}
                     onClick={() => {this.props.select(this.props.position)}}>
                     <Link to={`/course/${this.props.courseId}/module/${this.props.module.id}`}>
-                        <h7 style={{color: 'black'}}>{this.props.title}</h7>
+                        <div style={{color: 'black'}}>{this.props.title}</div>
                     </Link>
-                    <span className="pull-right">
+                    {(this.props.editable)?
+                    < span className="pull-right">
                         <button className='btn bg-transparent' onClick={() => {
-                            this.props.delete(this.props.module.id);
-                        }}>
-                            <i className="fa fa-trash"></i>
+                        this.props.delete(this.props.module.id);
+                    }}>
+                        <i className="fa fa-trash"></i>
                         </button>
                         <i className="fa fa-pencil"></i>
-                    </span>
+                        </span> : null
+                    }
                 </li>
         );
     }
