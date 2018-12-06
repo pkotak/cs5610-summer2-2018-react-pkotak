@@ -6,7 +6,7 @@ const stateToPropertyMapper = (state) => ({
     widgets: state.widget.widgets,
     preview: state.widget.preview,
     images: state.widget.images,
-    course : state.course
+    course : state.course.course
 })
 
 const dispatcherToPropertyMapper = dispatch => (

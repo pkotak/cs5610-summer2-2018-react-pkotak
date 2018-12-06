@@ -1,12 +1,14 @@
 import React from 'react'
 
-export const HeadingWidget = ({preview, widget, updateWidget}) => {
+export const HeadingWidget = ({preview, widget, updateWidget,editable}) => {
     let text;
     let size;
     let widgetType;
     let widgetName;
     return (
         <div>
+            {(editable)?
+            <div>
             <div hidden={preview}>
                 <h3>{widget.name} - Widget</h3>
                 <select ref={node => widgetType = node}
@@ -60,6 +62,7 @@ export const HeadingWidget = ({preview, widget, updateWidget}) => {
                        }}/>
                 <h4>Preview</h4>
             </div>
+            </div> : null}
             {widget.size === 1 && <h1>{widget.text}</h1>}
             {widget.size === 2 && <h2>{widget.text}</h2>}
             {widget.size === 3 && <h3>{widget.text}</h3>}

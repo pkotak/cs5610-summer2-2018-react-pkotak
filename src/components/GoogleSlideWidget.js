@@ -1,12 +1,14 @@
 import React from 'react'
 
-export const GoogleSlideWidget = ({widget, updateWidget, preview}) => {
+export const GoogleSlideWidget = ({widget, updateWidget, preview,editable}) => {
     let iFrameUrl = '';
     let widgetType;
     let widgetName;
 
     return (
         <div>
+            {(editable)?
+            <div>
             <div hidden={preview}>
                 <h3>{widget.name} - Widget</h3>
                 <select ref={node => widgetType = node}
@@ -44,6 +46,7 @@ export const GoogleSlideWidget = ({widget, updateWidget, preview}) => {
                        }}/>
                 <h3>Preview</h3>
             </div>
+            </div> : null}
             <iframe
                 src={widget.slidesIframe}
                 frameBorder="0"

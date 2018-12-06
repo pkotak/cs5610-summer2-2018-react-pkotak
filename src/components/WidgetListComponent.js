@@ -35,7 +35,9 @@ import {connect} from 'react-redux'
         return (
             <div className='mb-4'>
 
-                <button className='btn btn-success float-right'
+                {(this.props.course.editable)?
+                <div>
+                    <button className='btn btn-success float-right'
                         onClick={this.props.saveWidgets}>
                     Save
                 </button>
@@ -43,7 +45,10 @@ import {connect} from 'react-redux'
                     <ToggleButton value={this.props.preview}
                                   onToggle={this.props.togglePreview}/>
                 </div>
+
                 <h5 className='float-right mr-2'>Preview</h5>
+                </div>
+                    :null}
                 <h1>Widget List</h1>
                 <ul className='list-group'>
                     {this.props.widgets.sort((w1, w2) => w1.position - w2.position).map((widget, index) => {
@@ -52,7 +57,7 @@ import {connect} from 'react-redux'
                         return (
                             <li className='list-group-item'
                                 key={index}>
-
+                                {(this.props.editable)?
                                 <div hidden={this.props.preview}>
                                     <button className='btn btn-danger float-right ml-1'
                                             onClick={() => this.props.deleteWidget(widget.id)}>
@@ -67,41 +72,52 @@ import {connect} from 'react-redux'
                                             onClick={() => this.props.moveDown(widget)}>
                                         <i className='fa fa-arrow-down'/>
                                     </button>
-                                </div>
+                                </div> : null}
+
                                 <div>
                                     {widget.type === 'LIST' &&
                                     <ListWidget preview={this.props.preview} widget={widget}
-                                                updateWidget={this.props.updateWidget}/>}
+                                                updateWidget={this.props.updateWidget}
+                                                editable = {this.props.editable}
+                                    />}
                                     {widget.type === 'HEADING' &&
                                     <HeadingWidget preview={this.props.preview} widget={widget}
-                                                   updateWidget={this.props.updateWidget}/>}
+                                                   updateWidget={this.props.updateWidget}
+                                                   editable = {this.props.editable}/>}
                                     {widget.type === 'PARAGRAPH' &&
                                     <ParagraphWidget preview={this.props.preview} widget={widget}
-                                                     updateWidget={this.props.updateWidget}/>}
+                                                     updateWidget={this.props.updateWidget}
+                                                     editable = {this.props.editable}/>}
                                     {widget.type === 'IMAGE' &&
                                     <ImageWidget preview={this.props.preview}
                                                  widget={widget}
                                                  updateWidget={this.props.updateWidget}
                                                  images={this.props.images}
-                                                 searchImages={this.props.searchGoogleImages}/>}
+                                                 searchImages={this.props.searchGoogleImages}
+                                                 editable = {this.props.editable}/>}
                                     {widget.type === 'LINK' &&
                                     <LinkWidget preview={this.props.preview} widget={widget}
-                                                updateWidget={this.props.updateWidget}/>}
+                                                updateWidget={this.props.updateWidget}
+                                                editable = {this.props.editable}/>}
                                     {widget.type=== 'HTML' &&
                                     <HTMLWidget preview={this.props.preview} widget={widget}
-                                                updateWidget={this.props.updateWidget}/>
+                                                updateWidget={this.props.updateWidget}
+                                                editable = {this.props.editable}/>
 
 
                                     }
                                     {widget.type === 'YOUTUBE' &&
                                     <YoutubeWidget preview={this.props.preview} widget={widget}
-                                                updateWidget={this.props.updateWidget}/>}
+                                                updateWidget={this.props.updateWidget}
+                                                   editable = {this.props.editable}/>}
                                     {widget.type === 'SLIDE' &&
                                     <GoogleSlideWidget preview={this.props.preview} widget={widget}
-                                                   updateWidget={this.props.updateWidget}/>}
+                                                   updateWidget={this.props.updateWidget}
+                                                       editable = {this.props.editable}/>}
                                     {widget.type === 'DOC' &&
                                     <GoogleDocWidget preview={this.props.preview} widget={widget}
-                                                       updateWidget={this.props.updateWidget}/>}
+                                                       updateWidget={this.props.updateWidget}
+                                                     editable = {this.props.editable}/>}
                                 </div>
                             </li>)
                         }
