@@ -19,9 +19,10 @@ export default class CourseCard extends React.Component {
                         <p className="card-text">
                             Created: {this.props.course.created}
                         </p>
+                        {(this.props.faculty)?
                         <button className="btn btn-danger btn-block" onClick={() => {this.deleteCourse(this.props.course.id)}}>
                             <i className='fa fa-trash'></i>
-                        </button>
+                        </button> : null}
                     </div>
                     <div className='card-footer'>
                         <small className="text-muted">Last updated {this.props.course.modified}</small>

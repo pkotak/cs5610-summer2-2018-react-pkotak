@@ -4,8 +4,8 @@ import CourseService from "../services/CourseService";
 import '../styles/styles.css';
 import Sidebar from 'react-sidebar';
 import CourseCard from "../components/CourseCard";
-
-export default class CourseList extends React.Component{
+import {connect} from 'react-redux'
+class CourseList extends React.Component{
     constructor(){
         super();
         this.courseService = CourseService.instance;
@@ -75,9 +75,12 @@ export default class CourseList extends React.Component{
                 }
 
                 if(this.state.view === 'list')
-                    return <CourseRow key={index} course={updatedCourse} delete={this.deleteCourse}/>
+                    return <CourseRow key={index} course={updatedCourse} delete={this.deleteCourse}
+                                      faculty={this.props.user.faculty} />
                 else
-                    return <CourseCard key={index} course={updatedCourse} delete={this.deleteCourse}/>
+                    return <CourseCard key={index} course={updatedCourse} delete={this.deleteCourse}
+                                       faculty={this.props.user.faculty}
+                    />
             }
         )
 
@@ -154,13 +157,15 @@ export default class CourseList extends React.Component{
                                                        className="form-control"
                                                        id="titleFld"
                                                        placeholder="cs101"/></th>
+                                {(this.props.user.faculty)?
                                 <th width="70%" className='pull-right'>
                                     <button onClick={this.createCourse}
                                             className="btn btn-primary btn-block"
                                             id="addBtn">
                                         <i className='fa fa-plus'></i>
                                     </button>
-                                </th>
+                                </th>:null}
+
                                 <th>
                                     <button onClick={this.toggleView}
                                             className='btn btn-warning'
@@ -180,3 +185,11 @@ export default class CourseList extends React.Component{
         )
     }
 }
+
+const mapStatetoProps=(state)=>{
+    return{
+        user : state.user
+    }
+}
+
+export default connect(mapStatetoProps)(CourseList)

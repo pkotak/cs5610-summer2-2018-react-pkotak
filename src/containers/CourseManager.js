@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import CourseEditor from './CourseEditor';
 import CourseList from "./CourseList";
+import Login from '../components/Login'
 import {BrowserRouter as Router, Route} from 'react-router-dom';
 
 import {Provider} from 'react-redux'
@@ -23,6 +24,7 @@ export default class CourseManager
                     <div className="container-fluid">
                         <Route path="/courses" component={CourseList}/>
                         <Route path="/course/:courseId" component={CourseEditor}/>
+                        <Route path="/login" component={Login}/>
                     </div>
                 </Router>
             </Provider>
