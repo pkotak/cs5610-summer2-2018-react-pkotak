@@ -1,12 +1,14 @@
 import React from 'react'
 
-export const ListWidget = ({widget, updateWidget, preview}) => {
+export const ListWidget = ({widget, updateWidget, preview,editable}) => {
     let text;
     let ordered;
     let widgetType;
     let widgetName;
     return (
         <div>
+            {(editable)?
+            <div>
             <div hidden={preview}>
                 <h1>{widget.name} - Widget</h1>
                 <select ref={node => widgetType = node}
@@ -53,6 +55,7 @@ export const ListWidget = ({widget, updateWidget, preview}) => {
 
                 <h4>Preview</h4>
             </div>
+            </div> : null}
             {(!widget.ordered && widget.listItems !== undefined) &&
             <ul>
                 {widget.listItems.split('\n').map((item, index) => (

@@ -1,11 +1,13 @@
 import React from 'react';
 
-export const ParagraphWidget = ({preview, widget, updateWidget}) => {
+export const ParagraphWidget = ({preview, widget, updateWidget,editable}) => {
     let text;
     let widgetType;
     let widgetName;
     return (
         <div>
+            {(editable)?
+            <div>
             <div hidden={preview}>
                 <h3>{widget.name} - Widget</h3>
                 <select ref={node => widgetType = node}
@@ -46,6 +48,7 @@ export const ParagraphWidget = ({preview, widget, updateWidget}) => {
                        }}/>
                 <h3>Preview</h3>
             </div>
+            </div> : null}
             <p>{widget.text}</p>
         </div>
     )

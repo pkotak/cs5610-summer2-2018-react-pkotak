@@ -1,7 +1,8 @@
 import React from 'react';
 import TopicPills from "./TopicPills";
+import {connect} from 'react-redux'
 
-export default class LessonEditor extends React.Component{
+class LessonEditor extends React.Component{
     constructor(props){
         super(props);
         this.setCourseId = this.setCourseId.bind(this);
@@ -40,9 +41,19 @@ export default class LessonEditor extends React.Component{
             <div className='mt-2'>
                 <TopicPills courseId={this.state.courseId}
                             moduleId={this.state.moduleId}
-                            lessonId={this.state.lessonId}/>
+                            lessonId={this.state.lessonId}
+                            editable={this.props.course.editable}
+                />
             </div>
         );
 
     }
 }
+
+const mapStatetoProps=(state)=>{
+    return{
+        course : state.course.course
+    }
+}
+
+export default connect(mapStatetoProps)(LessonEditor)

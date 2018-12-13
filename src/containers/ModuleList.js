@@ -5,6 +5,7 @@ import ModuleEditor from '../containers/ModuleEditor';
 import {confirmAlert} from 'react-confirm-alert';
 import 'react-confirm-alert/src/react-confirm-alert.css';
 import {Route} from 'react-router-dom';
+import {connect} from 'react-redux'
 
 export default class ModuleList extends React.Component{
 
@@ -116,11 +117,14 @@ export default class ModuleList extends React.Component{
                                 key={index}
                                 delete={this.confirmDelete}
                                 select={this.selectModule}
-                                position={index}/>);
+                                position={index}
+                                editable={this.props.course.editable}
+                />);
             });
         return (
             <div>
                 {modules}
+                {(this.props.course.editable)?
                 <div className="input-group mb-3">
                     <input className="form-control"
                            onChange={this.titleChanged}
@@ -131,7 +135,7 @@ export default class ModuleList extends React.Component{
                             <i className="fa fa-plus"></i>
                         </button>
                     </div>
-                </div>
+                </div>:null}
             </div>
 
         );
@@ -158,8 +162,18 @@ export default class ModuleList extends React.Component{
                     </ul>
                 </div>
                 <div className='col-8'>
-                    <Route path='/course/:courseId/module/:moduleId' component={ModuleEditor}/>
+                    <Route path='/course/:courseId/module/:moduleId'
+                           //render ={()=>(<ModuleE editable={this.props.course.editable}/> )} />
+                           component={ModuleEditor}/>
                 </div>
             </div>);
     }
 }
+
+const mapStatetoProps=(state)=>{
+    return{
+        course : state.course
+    }
+}
+
+//export default connect(mapStatetoProps)(ModuleList)

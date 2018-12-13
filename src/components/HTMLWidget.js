@@ -17,13 +17,15 @@ import FroalaEditor from 'react-froala-wysiwyg';
 
 
 
-export const HTMLWidget = ({preview, widget, updateWidget}) => {
+export const HTMLWidget = ({preview, widget, updateWidget,editable}) => {
     let text;
     let widgetType;
     widget.htmlContent = (widget.htmlContent)? widget.htmlContent : ""
     console.log(widget);
     return (
         <div>
+            {(editable)?
+                <div>
             <div hidden={preview}>
                 <h3>{widget.name} - Widget</h3>
                 <select ref={node => widgetType = node}
@@ -52,6 +54,8 @@ export const HTMLWidget = ({preview, widget, updateWidget}) => {
 
             </div>
             <h4>Preview </h4>
+                </div>
+                : null}
             <p dangerouslySetInnerHTML={{__html: widget.htmlContent}} />
 
         </div>

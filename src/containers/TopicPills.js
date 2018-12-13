@@ -2,7 +2,7 @@ import React from 'react'
 import TopicService from '../services/TopicService'
 import TopicEditor from './TopicEditor'
 import {Link, Route} from 'react-router-dom'
-
+import {connect} from 'react-redux'
 export default class TopicPills extends React.Component{
     constructor(props){
         super(props);
@@ -94,8 +94,9 @@ export default class TopicPills extends React.Component{
                         onClick={() => this.selectTopic(i)}
                         key={i}>
                         <a className={`nav-link ${active}`}>
-                            <h7 style={{color: 'black'}}>{topic.title}</h7>
-                            <i className='fa fa-times ml-2' onClick={() => this.deleteTopic(topic.id)}/>
+                            <div style={{color: 'black'}}>{topic.title}</div>
+                            {(this.props.editable)?
+                            <i className='fa fa-times ml-2' onClick={() => this.deleteTopic(topic.id)}/> : null}
                         </a>
                     </li>
                 </Link>
@@ -130,11 +131,15 @@ export default class TopicPills extends React.Component{
             <div className='container-fluid'>
                 <div className='row'>
                     {topics}
-                    <li className='nav-item'>
-                        <button className="btn btn-outline-info" onClick={() => {this.toggleAddTopicView()}}>
-                            <i className="fa fa-plus"></i>
-                        </button>
-                    </li>
+                    {(this.props.editable)?
+                        <li className='nav-item'>
+                            <button className="btn btn-outline-info" onClick={() => {
+                                this.toggleAddTopicView()
+                            }}>
+                                <i className="fa fa-plus"></i>
+                            </button>
+                        </li>:null
+                    }
                 </div>
             </div>);
         }
@@ -154,3 +159,11 @@ export default class TopicPills extends React.Component{
         )
     }
 }
+
+const mapStatetoProps=(state)=>{
+    return{
+        course : state.course
+    }
+}
+
+// connect(mapStatetoProps)(TopicPills)

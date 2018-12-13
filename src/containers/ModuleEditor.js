@@ -1,7 +1,7 @@
 import React from 'react';
 import LessonsTab from "./LessonsTab";
-
-export default class ModuleEditor extends React.Component {
+import {connect} from 'react-redux'
+class ModuleEditor extends React.Component {
     constructor(props){
         super(props);
         this.setCourseId = this.setCourseId.bind(this);
@@ -45,8 +45,16 @@ export default class ModuleEditor extends React.Component {
     render(){
         return (
             <div className="container-fluid">
-                <LessonsTab moduleId={this.state.moduleId} courseId={this.state.courseId}/>
+                <LessonsTab editable={this.props.course.editable} moduleId={this.state.moduleId} courseId={this.state.courseId}/>
             </div>
     );
     }
 }
+
+const mapStatetoProps=(state)=>{
+    return{
+        course : state.course.course
+    }
+}
+
+export default connect(mapStatetoProps)(ModuleEditor)

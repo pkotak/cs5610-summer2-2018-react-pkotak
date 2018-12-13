@@ -1,12 +1,14 @@
 import React from 'react'
 
-export const ImageWidget = ({preview, updateWidget, widget, searchImages, images}) => {
+export const ImageWidget = ({preview, updateWidget, widget, searchImages, images,editable}) => {
     let text;
     let search;
     let widgetType;
     let widgetName;
     return (
         <div>
+            {(editable)?
+            <div>
             <div hidden={preview}>
                 <h3>{widget.name} - Widget</h3>
                 <select ref={node => widgetType = node}
@@ -72,6 +74,7 @@ export const ImageWidget = ({preview, updateWidget, widget, searchImages, images
                 {/*</button>*/}
                 <h3>Preview</h3>
             </div>
+            </div> :null}
             <img width='200px'
                  height='200px'
                  src={widget.src}/>

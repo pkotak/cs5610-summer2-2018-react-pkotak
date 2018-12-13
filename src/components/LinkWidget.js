@@ -1,12 +1,14 @@
 import React from 'react'
 
-export const LinkWidget = ({widget, updateWidget, preview}) => {
+export const LinkWidget = ({widget, updateWidget, preview,editable}) => {
     let text;
     let url;
     let widgetType;
     let widgetName;
     return (
         <div>
+            {(editable)?
+            <div>
             <div hidden={preview}>
                 <h3>{widget.name} - Widget</h3>
                 <select ref={node => widgetType = node}
@@ -55,6 +57,7 @@ export const LinkWidget = ({widget, updateWidget, preview}) => {
                        }}/>
                 <h3>Preview</h3>
             </div>
+            </div> : null}
             <a href={widget.href}>{widget.text}</a>
         </div>
     )
